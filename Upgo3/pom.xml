@@ -13,6 +13,15 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+	<repositories>
+		<!-- maven 기본 저장소 이외의 저장소 등록 -->
+		<repository>
+			<id>codelds</id>
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>

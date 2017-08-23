@@ -1,8 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
+	<context:component-scan base-package="com.example.dao" />
+	<context:component-scan base-package="com.example.service" />
+	<context:component-scan base-package="com.example.dto" />
+	<context:component-scan base-package="com.example.filter" />
+
+
+	<!-- MyBatis -->
+<!-- 	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@210.16.214.202:1521:xe" />
+		<property name="username" value="upgo3" />접속할 계정 아이디 수정해서 사용
+		<property name="password" value="upgo3" />비밀번호 수정해서 사용
+	</bean>
+
+	
+	
+	MyBatis DB
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property> mybatis 설정경로:이름 수정해서 사용
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean> -->
+	<!-- END -->
+
+	<!-- InterFace MyBatis -->
+	<!-- 	
+	<bean id="ProductMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.project2.mapper.ProductMapper" /> 
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	-->
+	
+	
+	<!-- END -->
+	
+	
+	<!-- Properties 사용 -->
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location" value="classpath:environment.properties" /> </bean> -->
+	<!-- END -->
+	
+	<!-- Transaction -->
+	<!-- 
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="txTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="txManager" />
+	</bean>
+	 -->
+
 </beans>

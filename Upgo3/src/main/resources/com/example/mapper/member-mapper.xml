@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.example.mapper.MemberMapper">
+
+	<select id="selectMemberByIdAndPasswd" parameterType="hashmap"
+		resultType="com.example.dto.Member">
+		SELECT c_id, c_email, c_usertype 
+		FROM customer 
+		WHERE c_id = #{id} AND c_passwd = #{passwd}
+	</select>
+	
+	<insert id="insertMember" parameterType="com.example.dto.Member">
+		INSERT INTO customer (c_id, c_passwd, c_email)
+		VALUES (#{memberId}, #{passwd}, #{email})
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
