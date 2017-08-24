@@ -25,12 +25,12 @@
 	
 	<!-- 11 -->
 	
-	<beans:bean id="multipartResolver"
+<!-- 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="20971520" />
 		<beans:property name="maxInMemorySize" value="2097152" />		
 		<beans:property name="uploadTempDir" value="/WEB-INF/temp" />
 		<beans:property name="defaultEncoding" value="utf-8" />
-	</beans:bean>
+	</beans:bean> -->
 	
 </beans:beans>
