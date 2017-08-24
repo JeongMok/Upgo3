@@ -15,6 +15,7 @@
 	<context:component-scan base-package="com.example.service" />
 	<context:component-scan base-package="com.example.dto" />
 	<context:component-scan base-package="com.example.filter" />
+	<context:component-scan base-package="com.example.mapper" />
 
 	<!-- MyBatis -->
 	<bean id="dataSource"
@@ -50,6 +51,11 @@
 
 	<bean id="omsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.example.mapper.OmsMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="productMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.example.mapper.ProductMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	<!-- END -->
