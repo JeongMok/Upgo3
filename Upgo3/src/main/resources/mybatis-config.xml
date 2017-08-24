@@ -24,6 +24,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/example/mapper/member-mapper.xml" />
-		<mapper resource="com/example/mapper/order-mapper.xml" />
+		<mapper resource="com/example/mapper/oms-mapper.xml" />
 	</mappers>
 </configuration>

@@ -17,11 +17,11 @@
 	<div id="added">
 		<hr noshade>
 		<h4>hyonvly</h4>
-		고객명 <input type="text" style="" name="id" id="id" value=123><br>
-		연락처 <input type="text" style="" name="id" id="id" value=123> <input
-			id="register" name="register" type="button" value="조회"
-			onclick="openMbChk()">
-
+		<form action="searchMember.action" method="post">
+		고객명 <input type="text" name="mbrName" id="mbrName" placeholder=★><br>
+		연락처 <input type="text" name="mbrPhone" id="mbrPhone" placeholder=★>
+		<input type="submit" id="search" value="Search-Member">
+		</form>
 		<table>
 			<tr>
 				<td>고객명자리</td>

@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	function openMbChk(){
 		window.name = "parentForm";
-		window.open("memberSearch.action",
+		window.open("oms/searchMember.action",
             "chkForm", "width=500, height=300, resizable = no, scrollbars = no");    
 }
 </script>
@@ -26,10 +26,10 @@
 		
 			<h4>주문고객</h4>  
 			고객명  <input type="text" style="center" name="id" id="id"
-					value=123 ><br> 주소  <input type="text" style="center" name="id" id="id"
+					value= ><br> 주소  <input type="text" style="center" name="id" id="id"
 					value=123 ><br> 연락처 <input type="text" style="center" name="id" id="id"
 					value=123 >
-			<input id="register" name="register" type="button" value="조회" onclick="openMbChk()">
+			<input id="search" name="search" type="button" value="조회" onclick="openMbChk()">
 
 		<p>
 			설치고객 : <input id="typeOfCar" type="text">
