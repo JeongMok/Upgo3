@@ -53,6 +53,4 @@ $(function(){
 	</div>
 
 </body>
-
-
 </html>
