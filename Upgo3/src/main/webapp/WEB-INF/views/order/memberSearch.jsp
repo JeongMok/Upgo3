@@ -27,9 +27,7 @@ $(function(){
 				method : "POST",
 				data : $('#searchForm').serialize(),
 				success: function(data, status, xhr){
-					//$('#searchTable').load("searchItem.jsp");
-					alert('123')
-					alert(${member.mbrAddress});
+					$('#searchTable').load('memberTable.action', $('#searchForm').serialize());
 				},
 				error: function(xhr, status, err) {
 					alert('11');
