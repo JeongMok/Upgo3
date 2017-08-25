@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dto.Member;
+import com.example.dto.Product;
 import com.example.service.OmsService;
 
 @Controller
@@ -24,7 +27,9 @@ public class OrderController {
 	public String searchMemberForm(){
 		return "order/memberSearch";
 	}
-	 
+	
+	
+	// 멤버검색
 	@RequestMapping(value = "searchMember.action", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchMember(String mbrName, String mbrPhone){
@@ -38,6 +43,7 @@ public class OrderController {
 		return "";
 	}
 	
+	// 데이터가 들어있는 테이블 가져오기
 	@RequestMapping(value = "memberTable.action", method = RequestMethod.GET)
 	public String searchItem(Model model, String mbrName, String mbrPhone){
 		
@@ -47,5 +53,17 @@ public class OrderController {
 		
 		return "order/searchItem";
 	}
-
+	
+	///////////////////////주문목록//////////////////////////////////
+	
+	// 주문목록 팝업 띄우기
+	@RequestMapping(value = "productList.action", method = RequestMethod.GET)
+	public String openWindow(Model model){
+		
+		ArrayList<Product> products = omsService.productList();
+		model.addAttribute("products", products);
+		
+		return "order/searchProduct";
+		
+	}
 }

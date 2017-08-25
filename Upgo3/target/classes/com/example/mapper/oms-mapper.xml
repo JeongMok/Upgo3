@@ -2,14 +2,20 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.example.mapper.OmsMapper">
 
 	<select id="findByNameAndPhoneNumber" parameterType="hashmap"
 		resultType="com.example.dto.Member">
-		SELECT MBRNAME, MBRPHONE, MBRADDRESS 
+		SELECT MBRNAME, MBRPHONE, MBRADDRESS
 		FROM MEMBER
 		WHERE MBRNAME = #{mbrName} AND MBRPHONE = #{mbrPhone}
+	</select>
+
+	<select id="productList" parameterType="hashmap"
+		resultType="com.example.dto.Product">
+		SELECT *
+		FROM PRODUCT
 	</select>
 </mapper>
 
