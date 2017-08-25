@@ -27,20 +27,24 @@ public class OrderController {
 	 
 	@RequestMapping(value = "searchMember.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String searchMember(Model model, String mbrName, String mbrPhone){
+	public String searchMember(String mbrName, String mbrPhone){
 		
 		Member member = omsService.authenticate(mbrName, mbrPhone);
 		if (member == null){
 			System.out.println("검색결과없음");
 		} else {
 			System.out.println(member.getMbrAddress());
-			model.addAttribute("member", member);
 		}
 		return "";
 	}
 	
 	@RequestMapping(value = "memberTable.action", method = RequestMethod.GET)
-	public String searchItem(){
+	public String searchItem(Model model, String mbrName, String mbrPhone){
+		
+		Member member = omsService.authenticate(mbrName, mbrPhone);
+		
+		model.addAttribute("member", member);
+		
 		return "order/searchItem";
 	}
 
