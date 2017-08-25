@@ -49,6 +49,11 @@
 
 	<!-- InterFace MyBatis -->
 
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.example.mapper.MemberMapper"/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
 	<bean id="omsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.example.mapper.OmsMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />

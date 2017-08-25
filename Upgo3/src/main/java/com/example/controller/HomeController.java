@@ -29,7 +29,7 @@ public class HomeController {
 	@Qualifier("productService")
 	ProductService productService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/" , "/home.action"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
