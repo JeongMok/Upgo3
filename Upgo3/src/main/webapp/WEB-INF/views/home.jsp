@@ -13,5 +13,7 @@
 <a href="ordermain.action">hyohyeon</a>
 <br>
 <a href="itemList.action">jungmok</a>
+<br>
+<a href="warehouse/warehouse-status.action">changwoo</a>
 </body>
 </html>
