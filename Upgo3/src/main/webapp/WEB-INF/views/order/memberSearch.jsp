@@ -30,12 +30,13 @@ $(function(){
 					$('#searchTable').load('memberTable.action', $('#searchForm').serialize());
 				},
 				error: function(xhr, status, err) {
-					alert('11');
+					alert('에러발생');
 				}
 			})
 		}
 	})
-})
+});
+  
 </script>
 </head>
 
@@ -46,11 +47,10 @@ $(function(){
 		<form id="searchForm" action="searchMember.action" method="post">
 			고객명 <input type="text" name="mbrName" id="mbrName" placeholder=★><br>
 			연락처 <input type="text" name="mbrPhone" id="mbrPhone" placeholder=★>
-			<input type="submit" id="search" name="search" value="Search-Member">
+			<input type="button" id="search" name="search" value="Search-Member">
 		</form>
 		<table id="searchTable">
 		</table>
 	</div>
-
 </body>
 </html>

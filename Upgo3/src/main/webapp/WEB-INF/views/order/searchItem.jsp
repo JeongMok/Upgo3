@@ -7,7 +7,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+	function sendCheckValue() {
+		// 회원가입 화면의 ID입력란에 값을 전달
+		opener.document.getElementById("mbrName").value = 
+			document.getElementById("mbrName").value,
+		opener.document.getElementById("mbrAddress").value = 
+			document.getElementById("mbrAddress").value,
+		opener.document.getElementById("mbrPhone").value = 
+			document.getElementById("mbrPhone").value;
+		if (opener != null) {
+			opener.chkForm = null;
+			self.close();
+		}
+	};
+</script>
 
 <table id="searchTable">
 	<tr>
@@ -16,8 +30,10 @@
 		<td>전화번호</td>
 	</tr>
 	<tr>
-		<td>${ member.mbrName }</td>
-		<td>${ member.mbrAddress }</td>
-		<td>${ member.mbrPhone }</td>
+		<td><input id="mbrName" name="mbrName" type="button"
+			value="${ member.mbrName }" onclick="sendCheckValue()"></td>
+		<td><input id="mbrAddress" type="text" value="${ member.mbrAddress }"></td>
+		<td><input id="mbrPhone" type="text" value="${ member.mbrPhone }"></td>
+		<td></td>
 	</tr>
 </table>

@@ -1,5 +1,6 @@
 package com.example.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.example.dto.Member;
+import com.example.dto.Product;
 import com.example.mapper.OmsMapper;
 
 @Repository
@@ -24,5 +26,10 @@ public class OmsDao {
 		
 		Member member = omsMapper.findByNameAndPhoneNumber(params);
 		return member;
+	}
+
+	public ArrayList<Product> productList() {
+		ArrayList<Product> products = omsMapper.productList();
+		return products;
 	}
 }

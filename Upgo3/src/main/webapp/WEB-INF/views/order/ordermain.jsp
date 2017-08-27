@@ -9,11 +9,17 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+	// 멤버검색	
 	function openMbChk(){
 		window.name = "parentForm";
 		window.open("oms/searchMember.action",
             "chkForm", "width=500, height=300, resizable = no, scrollbars = no");    
 }
+	// 제품목록
+	function openProductList(){
+		//window.name = "parentForm";
+		window.open("oms/productList.action","pdList", "width=1100, height=700, resizable=no, scrollbars = no");
+	}
 </script>
 </head>
 
@@ -25,10 +31,10 @@
 		<h2>고객정보</h2>
 		
 			<h4>주문고객</h4>  
-			고객명  <input type="text" style="center" name="id" id="id"
-					value= ><br> 주소  <input type="text" style="center" name="id" id="id"
-					value=123 ><br> 연락처 <input type="text" style="center" name="id" id="id"
-					value=123 >
+			고객명  <input type="text" style="center" name="mbrName" id="mbrName"
+					><br> 주소  <input type="text" style="center" name="mbrAddress" id="mbrAddress"
+					><br> 연락처 <input type="text" style="center" name="mbrPhone" id="mbrPhone"
+					>
 			<input id="search" name="search" type="button" value="조회" onclick="openMbChk()">
 
 		<p>
@@ -47,6 +53,7 @@
 				<Option>SUV</Option>
 			</select>
 		</p>
+		<p><input type="button" value="제품 목록" id="searchProduct" name="searchProduct" onclick="openProductList()"></p>
 	</div>
 	<div id="list">
 		<table id="myTable">
