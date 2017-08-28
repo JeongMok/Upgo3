@@ -6,7 +6,20 @@
 <html>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+// modal popup
+$(function(){
+    $("#product_Detail").click(function(){
+        $('div.modal').modal({remote : 'layer.html'});
+    })
+})
+</script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
 
 <body>
 	<div>LIST</div>
@@ -24,8 +37,7 @@
 				<input type="hidden" name="PrdCategory" id="product_category" value="${product.prdCategory }">
 				<input type="hidden" name="PrdSize" id="product_size" value="${product.prdSize }">
 				<tr>
-					<td><%-- <a href="detail/${board.boardNo}&${board.boardWriter}">${product.PrdName }</a> --%>${product.prdName }</td>
-					<td></td>
+					<td><a href="#" id="product_Detail">${product.prdName }</a></td>
 					<td>${product.prdPrice }</td>
 					<td>${product.prdColor }</td>
 					<td>${product.prdQuantity }</td>
@@ -33,5 +45,16 @@
 			</form>
 		</c:forEach>
 	</table>
+	
+	<!-- modal popup -->
+	<div class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	        <!-- remote ajax call이 되는영역 -->
+	    </div>
+	  </div>
+	</div>
+	<!-- /modal popup -->
+	
 </body>
 </html>
