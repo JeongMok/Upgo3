@@ -53,6 +53,8 @@
 			$("#prdPrice", opener.document).val($("#prdPrice", document).val());
 			$("#prdQuantity", opener.document).val(amountValue);
 			$("#prdTotalSum", opener.documnet).val(sumValue);
+			
+			
 		});
 		
 	});

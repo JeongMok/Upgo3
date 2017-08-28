@@ -20,6 +20,10 @@
 		//window.name = "parentForm";
 		window.open("oms/productList.action","pdList", "width=1100, height=700, resizable=no, scrollbars = no");
 	}
+	//
+	$(function(){
+		$(document).ready(function() { alert("로딩 완료"); });
+	})
 </script>
 </head>
 
