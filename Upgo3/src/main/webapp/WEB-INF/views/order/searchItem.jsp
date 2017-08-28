@@ -8,14 +8,14 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
+
 	function sendCheckValue() {
 		// 회원가입 화면의 ID입력란에 값을 전달
-		opener.document.getElementById("mbrName").value = 
-			document.getElementById("mbrName").value,
-		opener.document.getElementById("mbrAddress").value = 
-			document.getElementById("mbrAddress").value,
-		opener.document.getElementById("mbrPhone").value = 
-			document.getElementById("mbrPhone").value;
+
+		$("#mbrName", opener.document).val($("#mbrName", document).val());
+		$("#mbrAddress", opener.document).val($("#mbrAddress", document).val());
+		$("#mbrPhone", opener.document).val($("#mbrPhone", document).val());
+		
 		if (opener != null) {
 			opener.chkForm = null;
 			self.close();
@@ -32,7 +32,8 @@
 	<tr>
 		<td><input id="mbrName" name="mbrName" type="button"
 			value="${ member.mbrName }" onclick="sendCheckValue()"></td>
-		<td><input id="mbrAddress" type="text" value="${ member.mbrAddress }"></td>
+		<td><input id="mbrAddress" type="text"
+			value="${ member.mbrAddress }"></td>
 		<td><input id="mbrPhone" type="text" value="${ member.mbrPhone }"></td>
 		<td></td>
 	</tr>

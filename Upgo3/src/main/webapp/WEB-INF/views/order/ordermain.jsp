@@ -58,13 +58,19 @@
 	<div id="list">
 		<table id="myTable">
 			<tr>
-				<th>순번</th>
 				<th>제품코드</th>
 				<th>제품명</th>
 				<th>단가</th>
 				<th>수량</th>
 				<th>합계</th>
 				<hr noshade>
+			</tr>
+			<tr data-productcode="${product.prdCode}">
+				<td><input id="prdCode" name="prdCode" type="text" ></td>
+				<td><input id="prdName" name="prdName" type="text" ></td>
+				<td><input id="prdPrice" name="prdPrice" type="text" ></td>
+				<td><input id="prdQuantity" name="prdQuantity" type="text" ></td>
+				<td><input id="prdTotalSum" name="prdTotalSum" type="text" ></td>
 			</tr>
 		</table>
 		<hr noshade>
