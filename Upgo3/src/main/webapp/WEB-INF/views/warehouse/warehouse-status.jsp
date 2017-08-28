@@ -7,7 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="../resources/style/warehousetable.css">
+<link rel="stylesheet" href="/resources/style/warehousetable.css">
+<link rel="stylesheet" href="/resources/style/tabs.css">
+<link rel="stylesheet" href="/resources/style/warehousestatetable.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -50,43 +52,44 @@
 	});
 </script>
 <script>
-
+	$(function(){
+		
+	});
 </script>
 <style>
-.ui-tabs-vertical {
-	width: 55em;
+
+#warehousetablediv, #warehousetablediv2{
+	position:relative;
+	display:inline;
+	width:18%;
 }
 
-.ui-tabs-vertical .ui-tabs-nav {
-	padding: .2em .1em .2em .2em;
-	float: left;
-	width: 12em;
+#warehousestatetable, #warehousestatetable2{
+    border-style: solid;
+    border-width: 5px;
+    font-size: 15px;
+    margin: 2px;
+    padding: 5px;
 }
 
-.ui-tabs-vertical .ui-tabs-nav li {
-	clear: left;
-	width: 100%;
-	border-bottom-width: 1px !important;
-	border-right-width: 0 !important;
-	margin: 0 -1px .2em 0;
+.tabletd{
+    border-style: solid;
+    border-width: 2px;
+    font-size: 40px;
+    text-align:center;
+    margin: 2px;
+    padding: 5px;
+    width:130px;
+    height:130px;    
 }
 
-.ui-tabs-vertical .ui-tabs-nav li a {
-	display: block;
+#secter{
+	width:20%;
+	background-image:url(/resources/jpg/sector.jpg);
+	position:relative;
+	display:inline;
 }
 
-.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
-	padding-bottom: 0;
-	padding-right: .1em;
-	border-right-width: 1px;
-}
-
-.ui-tabs-vertical .ui-tabs-panel {
-	padding: 1em;
-	float: right;
-	width: 40em;
-}
-.
 </style>
 </head>
 
@@ -98,12 +101,97 @@
 			<li><a href="#tabs-2">입고관리</a></li>
 			<li><a href="#tabs-3">출고관리</a></li>
 		</ul>
-		<div id="tabs-1">
+		<div id="tabs-1">			
+			<div id="warehousetablediv">
+				<table id="warehousestatetable">
+					<tr>
+						<td class="tabletd" id="warehouse1">1</td>
+						<td class="tabletd" id="warehouse2">2</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse3">3</td>
+						<td class="tabletd" id="warehouse4">4</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse5">5</td>
+						<td class="tabletd" id="warehouse6">6</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse7">7</td>
+						<td class="tabletd" id="warehouse8">8</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse9">9</td>
+						<td class="tabletd" id="warehouse10">10</td>
+					</tr>
+				</table>
+			</div>
+			<div id="secter"></div>
+			<div id="warehousetablediv2">
+				<table id="warehousestatetable2">
+					<tr>
+						<td class="tabletd" id="warehouse11">11</td>
+						<td class="tabletd" id="warehouse12">12</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse13">13</td>
+						<td class="tabletd" id="warehouse14">14</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse15">15</td>
+						<td class="tabletd" id="warehouse16">16</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse17">17</td>
+						<td class="tabletd" id="warehouse18">18</td>
+					</tr>
+					<tr>
+						<td class="tabletd" id="warehouse19">19</td>
+						<td class="tabletd" id="warehouse20">20</td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<table id="clickedWarehouseInfo">
+					<thead>
+						<tr>
+							<th class="text-center">제품코드</th>
+							<th class="text-center">이름</th>
+							<th class="text-center">위치 수량 / 총 수량</th>
+							<th class="text-center">가격</th>
+							<th class="text-center">색상</th>
+							<th class="text-center">규격</th>
+							<th class="text-center">안전재고</th>
+							<th class="text-center">설치시간</th>
+							<th class="text-center">발주</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:if test = "${products ne null }">
+						<c:forEach var="i" begin="0" end="${size - 1}" step="1">
+						<tr>
+							<td class="text-center">${products[i].prdCode}</td>
+							<td class="text-center">${products[i].prdName}</td>
+							<td class="text-center">${warehouselocations[i].quantity} / ${products[i].prdQuantity}</td>
+							<td class="text-center">${products[i].prdPrice}</td>
+							<td class="text-center">${products[i].prdColor}</td>
+							<td class="text-center">${products[i].prdSize}</td>
+							<td class="text-center">${products[i].prdSafeStock}</td>
+							<td class="text-center">${products[i].prdInstallTime}</td>
+							<td class="text-center"><input type="button" class="productorder" value="발주"></td>
+						</tr>
+						</c:forEach>
+						</c:if>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="tabs-2">
 			<div>
 				<p>
-					Date: <input type="text" class="datepicker" id="dateS"> ~
-					Date: <input type="text" class="datepicker" id="dateF">
-					<input type="button" value="search" id="searchinput">
+					Date: <input type="text" class="datepicker" id="warehouseInDateS"> ~
+					Date: <input type="text" class="datepicker" id="warehouseOutDateF">
+					<input type="button" value="search" id="warehouseInSearch">
 				</p>
 				<table class="table-fill">
 					<thead>
@@ -133,16 +221,46 @@
 				</table>
 			</div>
 			<div>
+				
 			</div>
 		</div>
-		<div id="tabs-2">
-			<h2>Content heading 2</h2>
-			<p>ddus.</p>
-		</div>
 		<div id="tabs-3">
-			<h2>Content heading 3</h2>
-			<p>dddd.</p>
-			<p>ddddt.</p>
+			<div>
+				<p>
+					Date: <input type="text" class="datepicker" id="warehouseInDateS"> ~
+					Date: <input type="text" class="datepicker" id="warehouseOutDateF">
+					<input type="button" value="search" id="warehouseOutSearch">
+				</p>
+				<table class="table-fill">
+					<thead>
+						<tr>
+							<th class="text-center">출고일</th>
+							<th class="text-center">제품코드</th>
+							<th class="text-center">제품이름</th>
+							<th class="text-center">창고위치</th>
+							<th class="text-center">입고수량</th>
+						</tr>
+					</thead>
+					<tbody class="table-hover">
+						<c:if test = "${warehouses ne null }">
+						<c:forEach var="warehouse" items="${warehouses}">
+						<c:if test = "${warehouse.type eq 1 }">
+						<tr>
+							<td class="text-center">${warehouse.date}</td>
+							<td class="text-center">${warehouse.date}</td>
+							<td class="text-center">${warehouse.date}</td>
+							<td class="text-center">${warehouse.date}</td>
+							<td class="text-center">${warehouse.date}</td>
+						</tr>
+						</c:if>
+						</c:forEach>
+						</c:if>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				
+			</div>
 		</div>
 	</div>
 </body>
