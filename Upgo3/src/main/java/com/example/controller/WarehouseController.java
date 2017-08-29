@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dto.Member;
+import com.example.dto.OrderDetail;
 import com.example.dto.Product;
 import com.example.dto.StoreRelease;
 import com.example.dto.WarehouseLocation;
+import com.example.service.ProductService;
 import com.example.service.WarehouseService;
 
 @Controller
@@ -24,14 +26,20 @@ public class WarehouseController {
 	@Autowired
 	@Qualifier("warehouseService")
 	private WarehouseService warehouseService;
+	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
 
 	@RequestMapping(value = "warehouse-status.action", method = RequestMethod.GET)
 	public String warehouseStatusForm(Model model){
 		
 		// Store & Release data Select from Database
-		Date dateS = new Date();
+		Date dateS = new Date(0);
 		Date dateF = new Date();
-		ArrayList<StoreRelease> storeReleases = warehouseService.findStoreReleasesByDate(dateS,dateF);
+		java.sql.Date dbdateS = new java.sql.Date(dateS.getTime());
+		java.sql.Date dbdateF = new java.sql.Date(dateF.getTime());
+		ArrayList<StoreRelease> storeReleases = warehouseService.findStoreReleasesByDate(dbdateS,dbdateF);
 		ArrayList<StoreRelease> stores = null;
 		ArrayList<StoreRelease> releases = null;
 		for(int i=0; i<storeReleases.size();  i++){
@@ -43,12 +51,17 @@ public class WarehouseController {
 		}
 		model.addAttribute(stores);
 		model.addAttribute(releases);
+		int storeSize = stores.size();
+		int releaseSize = releases.size();
+		model.addAttribute(storeSize);
+		model.addAttribute(releaseSize);
 		///////////////////////////////////////////////////////
 		
 		// Find Stored Product From stores By odtNo
 		ArrayList<Product> storeProducts = null;
 		for(int i=0; i<stores.size();  i++){
 		storeProducts.add(warehouseService.findProductsByOdtNo(stores.get(i).getOdtNo()));
+		storeProducts.get(i).setPrdQuantity(productService.codeByAmount(storeProducts.get(i).getPrdCode()));
 		}
 		model.addAttribute(storeProducts);
 		///////////////////////////////////////////
@@ -57,17 +70,27 @@ public class WarehouseController {
 		ArrayList<Product> releaseProducts = null;
 		for(int i=0; i<releases.size();  i++){
 		releaseProducts.add(warehouseService.findProductsByOdtNo(releases.get(i).getOdtNo()));
+		releaseProducts.get(i).setPrdQuantity(productService.codeByAmount(releaseProducts.get(i).getPrdCode()));
 		}
 		model.addAttribute(releaseProducts);
 		///////////////////////////////////////////
 
-		// Find Warehouse Location From storeProducts
-		ArrayList<WarehouseLocation> storeProductLocations = null;
-		for(int i=0; i<storeProducts.size();  i++){
-		storeProductLocations.add(warehouseService.findLocationByPrdNo(storeProducts.get(i).getPrdCode()));
+		// Find Order Quantity From stores By odtNo
+		ArrayList<OrderDetail> storeOrderDetails = null;
+		for(int i=0; i<stores.size();  i++){
+		storeOrderDetails.add(warehouseService.findOrderDetailQuantityByOdtNo(stores.get(i).getOdtNo()));
+		model.addAttribute(storeOrderDetails);
 		}
+		////////////////////////////////////////////
 		
-		
+		// Find Order Quantity From releases By odtNo
+		ArrayList<OrderDetail> releaseOrderDetails = null;
+		for(int i=0; i<stores.size();  i++){
+		releaseOrderDetails.add(warehouseService.findOrderDetailQuantityByOdtNo(stores.get(i).getOdtNo()));
+		model.addAttribute(releaseOrderDetails);
+		}
+		////////////////////////////////////////////
+				
 		return "warehouse/warehouse-status";
 	}
 	

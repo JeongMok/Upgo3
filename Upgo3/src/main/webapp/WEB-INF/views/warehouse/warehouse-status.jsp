@@ -225,13 +225,13 @@
 					</thead>
 					<tbody class="table-hover">
 						<c:if test = "${stores ne null }">
-						<c:forEach var="i" begin="0" end="${size - 1}" step="1">
+						<c:forEach var="i" begin="0" end="${storeSize - 1}" step="1">
 						<tr>
 							<td class="text-center">${stores[i].srDate}</td>
 							<td class="text-center">${storeProducts[i].prdCode}</td>
 							<td class="text-center">${storeProducts[i].prdName}</td>
-							<td class="text-center">${warehouselocations[i].warehouseno}</td>
-							<td class="text-center">${orderdetails[i].odtquantity}</td>
+							<td class="text-center">${storeProducts[i].prdQuantity}</td>
+							<td class="text-center">${storeOrderDetails[i].odtquantity}</td>
 						</tr>
 						</c:forEach>
 						</c:if>
@@ -260,17 +260,15 @@
 						</tr>
 					</thead>
 					<tbody class="table-hover">
-						<c:if test = "${storereleases ne null }">
-						<c:forEach var="i" begin="0" end="${size - 1}" step="1">
-						<c:if test = "${storereleases[i].type eq 1 }">
+						<c:if test = "${releases ne null }">
+						<c:forEach var="i" begin="0" end="${releaseSize - 1}" step="1">
 						<tr>
-							<td class="text-center">${storereleases[i].srDate}</td>
-							<td class="text-center">${products[i].prdCode}</td>
-							<td class="text-center">${products[i].prdName}</td>
-							<td class="text-center">${warehouselocations[i].warehouseno}</td>
-							<td class="text-center">${orderdetails[i].odtquantity}</td>
+							<td class="text-center">${releases[i].srDate}</td>
+							<td class="text-center">${releaseProducts[i].prdCode}</td>
+							<td class="text-center">${releaseProducts[i].prdName}</td>
+							<td class="text-center">${releaseProducts[i].prdQuantity}</td>
+							<td class="text-center">${releaseOrderDetails[i].odtQuantity}</td>
 						</tr>
-						</c:if>
 						</c:forEach>
 						</c:if>
 					</tbody>

@@ -5,10 +5,26 @@
 
 <mapper namespace="com.example.mapper.WarehouseMapper">
 	
-	<select id="selectProduct" resultType="com.example.dto.Product">
+	<select id="selectStoreReleasesByDate" parameterType="HashMap"  resultType="com.example.dto.StoreRelease">
 		select *
-		from product
+		from storerelease
+		where srdate between #{dateS} and #{dateF}
 	</select>
+	
+	<select id="selectProductByOdtNo" parameterType="int"  resultType="com.example.dto.Product">
+		select *
+		from product p
+		inner join orderdetail odt
+		on p.prdCode = odt.prdCode
+		where odt.odtno=#{odtNo}
+	</select>
+	
+	<select id="selectOrderDetailByOdtNo" parameterType="int"  resultType="com.example.dto.OrderDetail">
+		select *
+		from orderdetail
+		where odtno=#{odtNo}
+	</select>
+	
 	
 	<!-- <insert id="insertStoreBoard" parameterType="com.badazo.dto.StoreBoard">
 		insert
