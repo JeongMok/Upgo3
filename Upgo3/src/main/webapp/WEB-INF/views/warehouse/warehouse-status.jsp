@@ -22,22 +22,42 @@
 
 		// datepicker start(From ~ To , restrict some date)
 		var dateFormat = "mm/dd/yy", 
-		from = $("#dateS").datepicker({
+		//Warehouse In Datepicker
+		from1 = $("#warehouseInDateS").datepicker({
 			defaultDate : "+1w",
 			changeMonth : true,
 			numberOfMonths : 2
 		}).on("change", function() {			
-		to.datepicker("option", "minDate", getDate(this));
+		to1.datepicker("option", "minDate", getDate(this));
 		}), 
 		
-		to = $("#dateF").datepicker({
+		to1 = $("#warehouseInDateF").datepicker({
 			defaultDate : "+1w",
 			changeMonth : true,
 			numberOfMonths : 2
 		}).on("change", function() {
-			from.datepicker("option", "maxDate", getDate(this));
+			from1.datepicker("option", "maxDate", getDate(this));
 		});
-
+		//
+		
+		//Warehouse Out Datepicker
+		from2 = $("#warehouseOutDateS").datepicker({
+			defaultDate : "+1w",
+			changeMonth : true,
+			numberOfMonths : 2
+		}).on("change", function() {			
+		to2.datepicker("option", "minDate", getDate(this));
+		}), 
+		
+		to2 = $("#warehouseOutDateF").datepicker({
+			defaultDate : "+1w",
+			changeMonth : true,
+			numberOfMonths : 2
+		}).on("change", function() {
+			from2.datepicker("option", "maxDate", getDate(this));
+		});
+		//
+		
 		function getDate(element) {
 			var date;
 			try {
@@ -101,7 +121,7 @@
 			<li><a href="#tabs-2">입고관리</a></li>
 			<li><a href="#tabs-3">출고관리</a></li>
 		</ul>
-		<div id="tabs-1">			
+		<div id="tabs-1">
 			<div id="warehousetablediv">
 				<table id="warehousestatetable">
 					<tr>
@@ -190,7 +210,7 @@
 			<div>
 				<p>
 					Date: <input type="text" class="datepicker" id="warehouseInDateS"> ~
-					Date: <input type="text" class="datepicker" id="warehouseOutDateF">
+					Date: <input type="text" class="datepicker" id="warehouseInDateF">
 					<input type="button" value="search" id="warehouseInSearch">
 				</p>
 				<table class="table-fill">
@@ -199,22 +219,20 @@
 							<th class="text-center">입고일</th>
 							<th class="text-center">제품코드</th>
 							<th class="text-center">제품이름</th>
-							<th class="text-center">창고위치</th>
+							<th class="text-center">재고수량</th>
 							<th class="text-center">입고수량</th>
 						</tr>
 					</thead>
 					<tbody class="table-hover">
-						<c:if test = "${warehouses ne null }">
-						<c:forEach var="warehouse" items="${warehouses}">
-						<c:if test = "${warehouse.type eq 0 }">
+						<c:if test = "${stores ne null }">
+						<c:forEach var="i" begin="0" end="${size - 1}" step="1">
 						<tr>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
+							<td class="text-center">${stores[i].srDate}</td>
+							<td class="text-center">${storeProducts[i].prdCode}</td>
+							<td class="text-center">${storeProducts[i].prdName}</td>
+							<td class="text-center">${warehouselocations[i].warehouseno}</td>
+							<td class="text-center">${orderdetails[i].odtquantity}</td>
 						</tr>
-						</c:if>
 						</c:forEach>
 						</c:if>
 					</tbody>
@@ -227,7 +245,7 @@
 		<div id="tabs-3">
 			<div>
 				<p>
-					Date: <input type="text" class="datepicker" id="warehouseInDateS"> ~
+					Date: <input type="text" class="datepicker" id="warehouseOutDateS"> ~
 					Date: <input type="text" class="datepicker" id="warehouseOutDateF">
 					<input type="button" value="search" id="warehouseOutSearch">
 				</p>
@@ -238,19 +256,19 @@
 							<th class="text-center">제품코드</th>
 							<th class="text-center">제품이름</th>
 							<th class="text-center">창고위치</th>
-							<th class="text-center">입고수량</th>
+							<th class="text-center">출고수량</th>
 						</tr>
 					</thead>
 					<tbody class="table-hover">
-						<c:if test = "${warehouses ne null }">
-						<c:forEach var="warehouse" items="${warehouses}">
-						<c:if test = "${warehouse.type eq 1 }">
+						<c:if test = "${storereleases ne null }">
+						<c:forEach var="i" begin="0" end="${size - 1}" step="1">
+						<c:if test = "${storereleases[i].type eq 1 }">
 						<tr>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
-							<td class="text-center">${warehouse.date}</td>
+							<td class="text-center">${storereleases[i].srDate}</td>
+							<td class="text-center">${products[i].prdCode}</td>
+							<td class="text-center">${products[i].prdName}</td>
+							<td class="text-center">${warehouselocations[i].warehouseno}</td>
+							<td class="text-center">${orderdetails[i].odtquantity}</td>
 						</tr>
 						</c:if>
 						</c:forEach>
