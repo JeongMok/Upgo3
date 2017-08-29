@@ -17,6 +17,8 @@
 		SELECT *
 		FROM PRODUCT
 	</select>
+	
+	<select id=""></select>
 </mapper>
 
 

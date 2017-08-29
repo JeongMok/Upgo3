@@ -10,4 +10,5 @@ public interface OmsMapper {
 
 	Member findByNameAndPhoneNumber(HashMap<String, Object> params);
 	ArrayList<Product> productList();
+	void orderConfirm(Member member, Product product);
 }

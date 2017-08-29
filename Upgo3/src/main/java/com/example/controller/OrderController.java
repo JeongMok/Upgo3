@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.dto.Member;
+import com.example.dto.Order;
 import com.example.dto.Product;
 import com.example.service.OmsService;
 
@@ -65,5 +67,14 @@ public class OrderController {
 		
 		return "order/searchProduct";
 		
+	}
+	// 오더확정하기
+	@RequestMapping(value="orderConfirm.action", method = RequestMethod.POST)
+	@ResponseBody
+	public String orderConfirm(Member member, Product product, Model model, List<Order> orders){
+		//orders.
+		//for(int i=0; i< count; i++)
+		//omsService.orderConfirm(member, product);
+		return null;
 	}
 }

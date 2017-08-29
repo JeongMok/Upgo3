@@ -29,4 +29,9 @@ public class OmsService {
 		return products;
 	}
 
+	public void orderConfirm(Member member, Product product) {
+		omsDao.orderConfirm(member, product);
+		
+	}
+
 }

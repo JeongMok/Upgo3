@@ -32,4 +32,9 @@ public class OmsDao {
 		ArrayList<Product> products = omsMapper.productList();
 		return products;
 	}
+
+	public void orderConfirm(Member member, Product product) {
+		omsMapper.orderConfirm(member, product);
+		
+	}
 }
