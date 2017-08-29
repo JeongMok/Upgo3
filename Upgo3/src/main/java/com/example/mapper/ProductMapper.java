@@ -6,6 +6,8 @@ import com.example.dto.Product;
 
 public interface ProductMapper {
 	
-	public List<Product> selectProduct();
+	List<Product> selectProduct();
+
+	Product selectProductByCode(Product product);
 
 }

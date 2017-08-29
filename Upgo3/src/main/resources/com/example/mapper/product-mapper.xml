@@ -10,6 +10,13 @@
 		from product
 	</select>
 	
+	<select id="selectProductByCode" parameterType="com.example.dto.Product" resultType="com.example.dto.Product">
+		select *
+		from product
+		where prdcode = #{prdCode}
+	</select>
+	
+	
 	<!-- <insert id="insertStoreBoard" parameterType="com.badazo.dto.StoreBoard">
 		insert
 		into

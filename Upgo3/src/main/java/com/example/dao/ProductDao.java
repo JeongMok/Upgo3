@@ -20,4 +20,9 @@ public class ProductDao {
 		List<Product> product = productMapper.selectProduct();
 		return product;
 	}
+
+	public Product selectProductByCode(Product product) {
+		Product data = productMapper.selectProductByCode(product);
+		return data;
+	}
 }
