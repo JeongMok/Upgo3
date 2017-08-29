@@ -13,7 +13,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-	$(function() {
+
+	$(function() {		
 
 		// tabs start
 		$("#tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
@@ -68,6 +69,11 @@
 			return date;
 		}
 		// finish datepicker usage
+		
+		$("#warehousestatetable").find("td").each(function(index){
+			
+			$(this).css("background","red");
+		})
 
 	});
 </script>
@@ -231,7 +237,7 @@
 							<td class="text-center">${storeProducts[i].prdCode}</td>
 							<td class="text-center">${storeProducts[i].prdName}</td>
 							<td class="text-center">${storeProducts[i].prdQuantity}</td>
-							<td class="text-center">${storeOrderDetails[i].odtquantity}</td>
+							<td class="text-center">${storeOrderDetails[i].odtQuantity}</td>
 						</tr>
 						</c:forEach>
 						</c:if>

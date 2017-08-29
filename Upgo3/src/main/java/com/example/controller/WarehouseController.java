@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,14 +36,25 @@ public class WarehouseController {
 	@RequestMapping(value = "warehouse-status.action", method = RequestMethod.GET)
 	public String warehouseStatusForm(Model model){
 		
+		//warehouse status
+		
+		//ArrayList<WarehouseLocation> wlTotalQuantityByWlNo = warehouseService.findWL();
+		
+		///////////////////////////////////////////////
+		
+		
+		
 		// Store & Release data Select from Database
-		Date dateS = new Date(0);
+		Date dateS = new Date();
+		dateS.setTime(0);
 		Date dateF = new Date();
 		java.sql.Date dbdateS = new java.sql.Date(dateS.getTime());
 		java.sql.Date dbdateF = new java.sql.Date(dateF.getTime());
+		System.out.println(dbdateS);
+		System.out.println(dbdateF);
 		ArrayList<StoreRelease> storeReleases = warehouseService.findStoreReleasesByDate(dbdateS,dbdateF);
-		ArrayList<StoreRelease> stores = null;
-		ArrayList<StoreRelease> releases = null;
+		ArrayList<StoreRelease> stores = new ArrayList<>();
+		ArrayList<StoreRelease> releases = new ArrayList<>();
 		for(int i=0; i<storeReleases.size();  i++){
 			if(storeReleases.get(i).getSrType()==0){
 				stores.add(storeReleases.get(i));
@@ -49,48 +62,59 @@ public class WarehouseController {
 				releases.add(storeReleases.get(i));
 			}
 		}
-		model.addAttribute(stores);
-		model.addAttribute(releases);
+		
+		model.addAttribute("stores",stores);
+		model.addAttribute("releases",releases);
 		int storeSize = stores.size();
 		int releaseSize = releases.size();
-		model.addAttribute(storeSize);
-		model.addAttribute(releaseSize);
+		model.addAttribute("storeSize",storeSize);
+		model.addAttribute("releaseSize",releaseSize);
+		
 		///////////////////////////////////////////////////////
 		
 		// Find Stored Product From stores By odtNo
-		ArrayList<Product> storeProducts = null;
+		ArrayList<Product> storeProducts = new ArrayList<>();
 		for(int i=0; i<stores.size();  i++){
 		storeProducts.add(warehouseService.findProductsByOdtNo(stores.get(i).getOdtNo()));
 		storeProducts.get(i).setPrdQuantity(productService.codeByAmount(storeProducts.get(i).getPrdCode()));
 		}
-		model.addAttribute(storeProducts);
+		model.addAttribute("storeProducts",storeProducts);
 		///////////////////////////////////////////
 
 		// Find Released Product From releases By odtNo
-		ArrayList<Product> releaseProducts = null;
+		ArrayList<Product> releaseProducts = new ArrayList<>();
 		for(int i=0; i<releases.size();  i++){
 		releaseProducts.add(warehouseService.findProductsByOdtNo(releases.get(i).getOdtNo()));
 		releaseProducts.get(i).setPrdQuantity(productService.codeByAmount(releaseProducts.get(i).getPrdCode()));
 		}
-		model.addAttribute(releaseProducts);
+		model.addAttribute("releaseProducts",releaseProducts);
 		///////////////////////////////////////////
 
 		// Find Order Quantity From stores By odtNo
-		ArrayList<OrderDetail> storeOrderDetails = null;
+		ArrayList<OrderDetail> storeOrderDetails = new ArrayList<>();
 		for(int i=0; i<stores.size();  i++){
 		storeOrderDetails.add(warehouseService.findOrderDetailQuantityByOdtNo(stores.get(i).getOdtNo()));
-		model.addAttribute(storeOrderDetails);
+		model.addAttribute("storeOrderDetails",storeOrderDetails);
 		}
 		////////////////////////////////////////////
 		
 		// Find Order Quantity From releases By odtNo
-		ArrayList<OrderDetail> releaseOrderDetails = null;
-		for(int i=0; i<stores.size();  i++){
-		releaseOrderDetails.add(warehouseService.findOrderDetailQuantityByOdtNo(stores.get(i).getOdtNo()));
-		model.addAttribute(releaseOrderDetails);
+		ArrayList<OrderDetail> releaseOrderDetails = new ArrayList<>();
+		for(int i=0; i<releases.size();  i++){
+		releaseOrderDetails.add(warehouseService.findOrderDetailQuantityByOdtNo(releases.get(i).getOdtNo()));
+		model.addAttribute("releaseOrderDetails",releaseOrderDetails);
 		}
 		////////////////////////////////////////////
-				
+		
+		System.out.println("storesize : "+stores.size());
+		System.out.println("release size : "+releaseSize);
+		System.out.println("stored product size : "+storeProducts.size());
+		System.out.println("release product size : "+releaseProducts.size());
+		System.out.println("store odt size : "+storeOrderDetails.size());
+		System.out.println("release odt size : "+releaseOrderDetails.size());
+		
+		
+		
 		return "warehouse/warehouse-status";
 	}
 	

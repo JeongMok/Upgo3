@@ -23,7 +23,7 @@ public class WarehouseDao {
 
 	public ArrayList<StoreRelease> selectStoreReleasesByDate(Date dateS, Date dateF) {
 
-		HashMap<String, Object> date = null;
+		HashMap<String, Object> date = new HashMap<>();
 		date.put("dateS", dateS);
 		date.put("dateF", dateF);
 		ArrayList<StoreRelease> storeReleases = warehouseMapper.selectStoreReleasesByDate(date);
