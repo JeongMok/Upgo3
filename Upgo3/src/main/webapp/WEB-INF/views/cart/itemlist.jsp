@@ -31,6 +31,10 @@ $(function(){
 				$('#price').text("가격 : "+data.prdPrice);
 				$('#color').text("색상 : "+data.prdColor);
 				$('#size').text("크기 : "+data.prdSize);
+				$('#modal_code').val(data.prdCode);
+				$('#modal_category').val(data.prdCategory);
+				$('#modal_name').val(data.prdName);
+				$('#modal_quantity').val(data.prdQuantity);
 				$('div.modal').modal({backdrop: 'static', keyboard: false});
 			},
 			error: function(xhr, status, err) {
@@ -64,7 +68,12 @@ $(function(){
     
     // 장바구니 담기
     $("#addcart").click(function() {
-    	alert($("#PrdQuantity").val());
+    	alert($("#modal_quantity").val());
+    	$("#amount span").text("1");
+    })
+    
+    // 닫기 버튼
+    $("#close").click(function() {
     	$("#amount span").text("1");
     })
     
@@ -85,13 +94,13 @@ $(function(){
 		</tr>
 		<c:forEach var="product" items="${product}">
 			<form id="prdForm${ product.prdCode }">
-				<input type="hidden" name="prdCode" id="product_no" value="${product.prdCode }" data-target="#myModal">
+				<input type="hidden" name="prdCode" id="product_no" value="${product.prdCode }">
 				<input type="hidden" name="prdCategory" id="product_category" value="${product.prdCategory }">
 				<input type="hidden" name="prdSize" id="product_size" value="${product.prdSize }">
-				<input type="hidden" name="prdName" id="product_size" value="${product.prdName }">
-				<input type="hidden" name="prdPrice" id="product_size" value="${product.prdPrice }">
-				<input type="hidden" name="prdColor" id="product_size" value="${product.prdColor }">
-				<input type="hidden" name="prdQuantity" id="product_size" value="${product.prdQuantity }">
+				<input type="hidden" name="prdName" id="product_name" value="${product.prdName }">
+				<input type="hidden" name="prdPrice" id="product_price" value="${product.prdPrice }">
+				<input type="hidden" name="prdColor" id="product_color" value="${product.prdColor }">
+				<input type="hidden" name="prdQuantity" id="product_quantity" value="${product.prdQuantity }">
 			</form>
 			<tr>
 				<td><a href="#" id="product_Detail" data-prdNo='${ product.prdCode }'>${product.prdName }</a></td>
@@ -114,6 +123,7 @@ $(function(){
 				  <h4 class="modal-title">Header</h4>
 				  </div>
 				  <div id="amount" style="width: 50%; float: left">
+				  	수량&nbsp;
 				  	<a href="#" id="decrease">&lt;</a><span>1</span><a href="#" id="increase">&gt;</a>
 				  </div>
 				</div>
@@ -122,11 +132,15 @@ $(function(){
 				    <h5 id="price"></h5>
 				    <h5 id="color"></h5>
 				    <h5 id="size"></h5>
+				    <input type="hidden" name="prdCode" id="modal_code">
+					<input type="hidden" name="prdCategory" id="modal_category">
+					<input type="hidden" name="prdName" id="modal_name">
+					<input type="hidden" name="prdQuantity" id="modal_quantity">
 				</div>
 				<!-- Footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" id="addcart" data-dismiss="modal">장바구니 담기</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="close">닫기</button>
 				</div>
 		    </div>
 		  </div>

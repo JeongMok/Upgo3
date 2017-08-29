@@ -25,4 +25,9 @@ public class ProductDao {
 		Product data = productMapper.selectProductByCode(product);
 		return data;
 	}
+
+	public int codeByAmount(String code) {
+		int sum = productMapper.codeByAmount(code);
+		return sum;
+	}
 }

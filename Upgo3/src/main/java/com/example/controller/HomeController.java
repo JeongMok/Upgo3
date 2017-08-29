@@ -56,6 +56,13 @@ public class HomeController {
 		
 		List<Product> product = productService.selectProduct();
 
+		for (int i = 0; i < product.size(); i++) {
+			String code = product.get(i).getPrdCode();
+			int sum = productService.codeByAmount(code);
+			
+			product.get(i).setPrdQuantity(sum);
+		}
+
 		model.addAttribute("product", product);
 		
 		return "cart/itemlist";

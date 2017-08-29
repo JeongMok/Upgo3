@@ -29,6 +29,12 @@ public class ProductService {
 	}
 
 
+	public int codeByAmount(String code) {
+		int sum = productDao.codeByAmount(code);
+		return sum;
+	}
+
+
 //	public Member memberLogin(Member member) {
 //		// TODO Auto-generated method stub
 //		logger.info("memberLogin");

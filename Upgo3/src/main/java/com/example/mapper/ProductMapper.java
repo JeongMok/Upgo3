@@ -10,4 +10,6 @@ public interface ProductMapper {
 
 	Product selectProductByCode(Product product);
 
+	int codeByAmount(String code);
+
 }

@@ -20,9 +20,12 @@ public class CartController {
 	@RequestMapping(value = "productDetail.action", method = RequestMethod.POST)
 	public @ResponseBody Product selectProduct(Product product){
 		
-		System.out.println(product.getPrdCode());
-		
 		Product data = productService.selectProductByCode(product);
+		
+		// 수량 
+		String code = product.getPrdCode();
+		int sum = productService.codeByAmount(code);
+		data.setPrdQuantity(sum);
 		
 		return data;
 	}
