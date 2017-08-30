@@ -84,6 +84,9 @@ $(function(){
 
 <body>
 	<div>LIST</div>
+	<div>
+		<a href="basket.action" id="basket">장바구니</a>
+	</div>
 	<!-- Table -->
 	<table class="table table-hover">
 		<tr>

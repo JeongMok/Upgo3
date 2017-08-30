@@ -3,6 +3,7 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +29,12 @@ public class CartController {
 		data.setPrdQuantity(sum);
 		
 		return data;
+	}
+	
+	@RequestMapping(value = "/basket.action", method = RequestMethod.GET)
+	public String basket(Model model) {
+		System.out.println("123");
+		return "cart/basket";
 	}
 
 
