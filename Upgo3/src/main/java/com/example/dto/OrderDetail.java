@@ -2,55 +2,55 @@ package com.example.dto;
 
 public class OrderDetail {
 
-	private int OdtNo;
-	private int OdtQuantity;
-	private String PrdCode;
-	private int OrdNo;
-	private String MbrId;
-	private int OdtCheck;
-	private int OdtType;
+	private int odtNo;
+	private int odtQuantity;
+	private String prdCode;
+	private int ordNo;
+	private String mbrId;
+	private int odtCheck;
+	private int odtType;
 	
 	public int getOdtNo() {
-		return OdtNo;
+		return odtNo;
 	}
 	public void setOdtNo(int odtNo) {
-		OdtNo = odtNo;
+		this.odtNo = odtNo;
 	}
 	public int getOdtQuantity() {
-		return OdtQuantity;
+		return odtQuantity;
 	}
 	public void setOdtQuantity(int odtQuantity) {
-		OdtQuantity = odtQuantity;
+		this.odtQuantity = odtQuantity;
 	}
 	public String getPrdCode() {
-		return PrdCode;
+		return prdCode;
 	}
 	public void setPrdCode(String prdCode) {
-		PrdCode = prdCode;
+		this.prdCode = prdCode;
 	}
 	public int getOrdNo() {
-		return OrdNo;
+		return ordNo;
 	}
 	public void setOrdNo(int ordNo) {
-		OrdNo = ordNo;
+		this.ordNo = ordNo;
 	}
 	public String getMbrId() {
-		return MbrId;
+		return mbrId;
 	}
 	public void setMbrId(String mbrId) {
-		MbrId = mbrId;
+		this.mbrId = mbrId;
 	}
 	public int getOdtCheck() {
-		return OdtCheck;
+		return odtCheck;
 	}
 	public void setOdtCheck(int odtCheck) {
-		OdtCheck = odtCheck;
+		this.odtCheck = odtCheck;
 	}
 	public int getOdtType() {
-		return OdtType;
+		return odtType;
 	}
 	public void setOdtType(int odtType) {
-		OdtType = odtType;
+		this.odtType = odtType;
 	}
 	
 
