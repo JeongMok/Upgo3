@@ -43,20 +43,19 @@ public class OrderController {
 	// 멤버검색
 	@RequestMapping(value = "searchMember.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String searchMember(String mbrName, String mbrPhone){
+	public String searchMember(String mbrName, String mbrPhone, String mbrId){
 		
 		Member member = omsService.authenticate(mbrName, mbrPhone);
 		if (member == null){
 			System.out.println("검색결과없음");
 		} else {
-			System.out.println(member.getMbrAddress());
 		}
 		return "";
 	}
 	
 	// 데이터가 들어있는 테이블 가져오기
 	@RequestMapping(value = "memberTable.action", method = RequestMethod.GET)
-	public String searchItem(Model model, String mbrName, String mbrPhone){
+	public String searchItem(Model model, String mbrName, String mbrPhone, String mbrId){
 		
 		Member member = omsService.authenticate(mbrName, mbrPhone);
 		
@@ -82,29 +81,21 @@ public class OrderController {
 	@ResponseBody
 	public void orderConfirm(Model model,HttpServletRequest request)throws IOException {
 	    
-//		ArrayList<String> productList = (ArrayList<String>)request.getAttribute("productList");
-//		ArrayList<String> quantityList = (ArrayList<String>)request.getAttribute("quantityList"
+
 		String[] productList= request.getParameterValues("productList");
 		String[] quantityList= request.getParameterValues("quantityList");
-/*		String[] mbrId = request.getParameter("mbrId");
-		String ordName = request.getParameter("ordName");
-		String ordAddress = request.getParameter("ordAddress");
-		String ordPhone = request.getParameter("ordPhone");
-		System.out.printf(mbrId);
-		System.out.printf(ordName);*/
-		//System.out.println(productList[2]);
-		//System.out.println(quantityList[2]);
-		//for(int i=0; i<productList.length; i++){
-			
-		//}
-		
-		
-		
+		String[] mbrId = request.getParameterValues("mbrId");
+		String[] ordName = request.getParameterValues("ordName");
+		String[] ordAddress = request.getParameterValues("ordAddress");
+		String[] ordPhone = request.getParameterValues("ordPhone");
+
+
+		omsService.insertOrder(mbrId[0],ordAddress[0],ordPhone[0],ordName[0]);
 		for(int i=0; i<productList.length; i++){
 			System.out.println("productList"+i+"th value is "+productList[i]);
 			System.out.println("quantityList"+i+"th value is "+quantityList[i]);
 			
-			omsService.insertOrderList(productList[i],quantityList[i]);
+			omsService.insertOrderList(productList[i],quantityList[i], mbrId[0]);
 		}
 
 	}

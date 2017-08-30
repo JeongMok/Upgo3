@@ -7,20 +7,31 @@
 
 	<select id="findByNameAndPhoneNumber" parameterType="hashmap"
 		resultType="com.example.dto.Member">
-		SELECT MBRNAME, MBRPHONE, MBRADDRESS
+		SELECT MBRNAME, MBRPHONE, MBRADDRESS, MBRID
 		FROM MEMBER
 		WHERE MBRNAME = #{mbrName} AND MBRPHONE = #{mbrPhone}
 	</select>
 
-	<select id="productList" parameterType="hashmap"
-		resultType="com.example.dto.Product">
+	<select id="productList" parameterType="hashmap" resultType="com.example.dto.Product">
 		SELECT *
 		FROM PRODUCT
 	</select>
-	
+
 	<insert id="insertOrderList" parameterType="hashmap">
-		INSERT INTO ORDERDETAIL(ODTNO, PRDCODE, ODTQUANTITY, ODTCHECK)
-		VALUES(ORDERDETAIL_SEQ.NEXTVAL, #{prdName}, #{prdQuantity}, 1)
+		INSERT INTO ORDERDETAIL(ODTNO, PRDCODE, ODTQUANTITY, ODTCHECK, ORDNO)
+		VALUES(ORDERDETAIL_SEQ.NEXTVAL, #{prdName}, #{prdQuantity}, 1, 
+		(SELECT ORDNO FROM 
+			(SELECT * FROM ORD 
+			WHERE MBRID=#{mbrId} 
+			ORDER BY ORDDATE DESC) 
+			WHERE ROWNUM=1)) 
+	</insert>
+	
+	
+	<insert id="insertOrder" parameterType="hashmap">
+		INSERT INTO
+		ORD(ORDNO, ORDDATE, MBRID, ORDNAME, ORDADDRESS, ORDPHONE)
+		VALUES(ORD_SEQ.NEXTVAL, SYSDATE, #{mbrId}, #{ordName}, #{ordAddress}, #{ordPhone})
 	</insert>
 </mapper>
 

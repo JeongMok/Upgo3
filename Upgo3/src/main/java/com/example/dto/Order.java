@@ -10,6 +10,7 @@ public class Order {
 	private String ordMemo;
 	private String ordAddress;
 	private String ordPhone;
+	private String ordName;
 	private Date rdDeliveryDate;
 	private int onstallTime;
 	private int odtQuantity;
@@ -75,6 +76,12 @@ public class Order {
 	}
 	public void setOrdPhone(String ordPhone) {
 		this.ordPhone = ordPhone;
+	}
+	public String getOrdName() {
+		return ordName;
+	}
+	public void setOrdName(String ordName) {
+		this.ordName = ordName;
 	}
 	
 }

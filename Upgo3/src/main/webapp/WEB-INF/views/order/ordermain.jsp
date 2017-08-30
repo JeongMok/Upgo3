@@ -31,23 +31,34 @@
 			var count = $('tr[id^=prdtr]').length;
 			var productList = [];
 			var quantityList = [];
-			var mbrId[];
-			mbrId.= $('#mbrId');
-			var ordName[] = $('#mbrName');
+			
+			var mbrId=[];
+			mbrId.push($('#mbrId').val());
+			
+			var ordName=[];
+			ordName.push($('#mbrName').val());
+			
+			var ordAddress=[];
+			ordAddress.push($('#mbrAddress').val());
+			
+			var ordPhone=[];
+			ordPhone.push($('#mbrPhone').val());
+			
+/* 			var ordName[] = $('#mbrName');
 			var ordAddress[] = $('#mbrAddress');
-			var ordPhone[] = $('mbrPhone');
+			var ordPhone[] = $('mbrPhone'); */
 			for(var i = 0; i < count; i++) {
 				productList.push($('#prdtr'+i).attr("data-productcode"));
 				quantityList.push($('#prdtr'+i).children('#prdQuantity').text());
 			}
-			
+			/* , ordName, ordAddress, ordPhone */
 			$.ajaxSettings.traditional = true; // userId[]:aa13 -> userId:aaa
 			$.ajax({
 				//contentType :'application/json; charset=utf-8',
 				//dataType :'json',
 				type:'POST',
 				url: 'oms/orderConfirm.action',
-				data:{'productList':productList, 'quantityList':quantityList, 'mbrId':mbrId/* , ordName, ordAddress, ordPhone */},
+				data:{'productList':productList, 'quantityList':quantityList, 'mbrId':mbrId, 'ordName':ordName,'ordAddress':ordAddress, 'ordPhone':ordPhone},
 				success: alert('성공')
 			})
 		})
@@ -60,7 +71,7 @@
 <body>
 	<form id="submitform"
 		action="oms/orderConfirm.action" method="post">
-		<p style="margin-left: 300px"> ff</p>
+		<p style="margin-left: 300px">연습중</p>
 		<div id="added">
 			<hr noshade>
 			<h2>고객정보</h2>
@@ -68,8 +79,10 @@
 			<h4>주문고객</h4>
 			고객명 <input type="text" style="" name="mbrName" id="mbrName"><br>
 			주소 <input type="text" style="" name="mbrAddress" id="mbrAddress"><br>
-			연락처 <input type="text" style="" name="mbrPhone" id="mbrPhone">
-			<input type="hidden" id="mbrId">
+			연락처 <input type="text" style="" name="mbrPhone" id="mbrPhone"><br>
+			<%-- <input type="hidden" id="mbrId" value="${ member.mbrId }"> --%>
+			<input type="hidden" id="mbrId" name="mbrId">
+			
 			<input id="search" name="search" type="button" value="조회"
 				onclick="openMbChk()">
 

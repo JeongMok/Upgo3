@@ -12,4 +12,5 @@ public interface OmsMapper {
 	ArrayList<Product> productList();
 	void orderConfirm(Member member, Product product);
 	void insertOrderList(HashMap<String, Object> params);
+	void insertOrder(HashMap<String, Object> params);
 }

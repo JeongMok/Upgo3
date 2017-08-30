@@ -34,8 +34,13 @@ public class OmsService {
 		
 	}
 
-	public void insertOrderList(String prdName, String prdQuantity) {
-		omsDao.insertOrderList(prdName, prdQuantity);
+	public void insertOrderList(String prdName, String prdQuantity, String mbrId) {
+		omsDao.insertOrderList(prdName, prdQuantity, mbrId);
+		
+	}
+
+	public void insertOrder(String mbrId, String ordAddress, String ordPhone, String ordName) {
+		omsDao.insertOrder(mbrId, ordAddress, ordPhone, ordName);
 		
 	}
 

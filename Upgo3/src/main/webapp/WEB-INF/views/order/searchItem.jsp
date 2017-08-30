@@ -16,6 +16,7 @@
 		$("#mbrAddress", opener.document).val($("#mbrAddress", document).val());
 		$("#mbrPhone", opener.document).val($("#mbrPhone", document).val());
 		$("#mbrId", opener.document).val($("#mbrId", document).val());
+		$("#mbrPhone", opener.document).val($("#mbrPhone", document).val());
 		
 		if (opener != null) {
 			opener.chkForm = null;
@@ -29,12 +30,11 @@
 		<td>고객명자리</td>
 		<td>주소자리</td>
 		<td>전화번호</td>
+		<td></td>
 	</tr>
 	<tr>
-		<td><input id="mbrName" name="mbrName" type="button"
-			value="${ member.mbrName }" onclick="sendCheckValue()"></td>
-		<td><input id="mbrAddress" type="text"
-			value="${ member.mbrAddress }"></td>
+		<td><input id="mbrName" name="mbrName" type="button" value="${ member.mbrName }" onclick="sendCheckValue()"></td>
+		<td><input id="mbrAddress" type="text" value="${ member.mbrAddress }"></td>
 		<td><input id="mbrPhone" type="text" value="${ member.mbrPhone }"></td>
 		<td><input id="mbrId" type="hidden" value="${ member.mbrId }"></td>
 	</tr>
