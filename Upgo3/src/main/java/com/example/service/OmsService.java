@@ -34,4 +34,9 @@ public class OmsService {
 		
 	}
 
+	public void insertOrderList(String prdName, String prdQuantity) {
+		omsDao.insertOrderList(prdName, prdQuantity);
+		
+	}
+
 }

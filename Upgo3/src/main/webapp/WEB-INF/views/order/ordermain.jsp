@@ -31,23 +31,26 @@
 			var count = $('tr[id^=prdtr]').length;
 			var productList = [];
 			var quantityList = [];
+			var mbrId[];
+			mbrId.= $('#mbrId');
+			var ordName[] = $('#mbrName');
+			var ordAddress[] = $('#mbrAddress');
+			var ordPhone[] = $('mbrPhone');
 			for(var i = 0; i < count; i++) {
 				productList.push($('#prdtr'+i).attr("data-productcode"));
 				quantityList.push($('#prdtr'+i).children('#prdQuantity').text());
 			}
-			productList = JSON.stringify({'productList': productList});
-			quantityList = JSON.stringify({'quantityList':quantityList});
+			
+			$.ajaxSettings.traditional = true; // userId[]:aa13 -> userId:aaa
 			$.ajax({
-				contentType :'application/json; charset=utf-8',
-				dataType :'json',
+				//contentType :'application/json; charset=utf-8',
+				//dataType :'json',
 				type:'POST',
 				url: 'oms/orderConfirm.action',
-				data:productList,
-				susccess: alert('성공')
+				data:{'productList':productList, 'quantityList':quantityList, 'mbrId':mbrId/* , ordName, ordAddress, ordPhone */},
+				success: alert('성공')
 			})
 		})
-		  
-		
 	})
 </script>
 </head>
@@ -57,7 +60,7 @@
 <body>
 	<form id="submitform"
 		action="oms/orderConfirm.action" method="post">
-		<p style="margin-left: 300px">* 최대 차량 등록은 5대 입니다 *</p>
+		<p style="margin-left: 300px"> ff</p>
 		<div id="added">
 			<hr noshade>
 			<h2>고객정보</h2>
@@ -66,6 +69,7 @@
 			고객명 <input type="text" style="" name="mbrName" id="mbrName"><br>
 			주소 <input type="text" style="" name="mbrAddress" id="mbrAddress"><br>
 			연락처 <input type="text" style="" name="mbrPhone" id="mbrPhone">
+			<input type="hidden" id="mbrId">
 			<input id="search" name="search" type="button" value="조회"
 				onclick="openMbChk()">
 

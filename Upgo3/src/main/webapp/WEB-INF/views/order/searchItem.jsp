@@ -15,6 +15,7 @@
 		$("#mbrName", opener.document).val($("#mbrName", document).val());
 		$("#mbrAddress", opener.document).val($("#mbrAddress", document).val());
 		$("#mbrPhone", opener.document).val($("#mbrPhone", document).val());
+		$("#mbrId", opener.document).val($("#mbrId", document).val());
 		
 		if (opener != null) {
 			opener.chkForm = null;
@@ -35,6 +36,6 @@
 		<td><input id="mbrAddress" type="text"
 			value="${ member.mbrAddress }"></td>
 		<td><input id="mbrPhone" type="text" value="${ member.mbrPhone }"></td>
-		<td></td>
+		<td><input id="mbrId" type="hidden" value="${ member.mbrId }"></td>
 	</tr>
 </table>

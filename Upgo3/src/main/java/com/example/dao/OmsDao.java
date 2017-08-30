@@ -35,6 +35,12 @@ public class OmsDao {
 
 	public void orderConfirm(Member member, Product product) {
 		omsMapper.orderConfirm(member, product);
-		
+	}
+
+	public void insertOrderList(String prdName, String prdQuantity) {
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("prdName", prdName);
+		params.put("prdQuantity", prdQuantity);
+		omsMapper.insertOrderList(params);
 	}
 }

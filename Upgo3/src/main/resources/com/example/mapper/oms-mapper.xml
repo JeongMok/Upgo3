@@ -18,7 +18,10 @@
 		FROM PRODUCT
 	</select>
 	
-	<select id=""></select>
+	<insert id="insertOrderList" parameterType="hashmap">
+		INSERT INTO ORDERDETAIL(ODTNO, PRDCODE, ODTQUANTITY, ODTCHECK)
+		VALUES(ORDERDETAIL_SEQ.NEXTVAL, #{prdName}, #{prdQuantity}, 1)
+	</insert>
 </mapper>
 
 
