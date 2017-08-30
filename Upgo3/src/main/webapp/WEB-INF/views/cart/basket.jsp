@@ -9,7 +9,7 @@
 <script type="text/javascript">
 </script>
 
-<table id="marketTable">
+<table id="marketTable"> 
 	<tr>
 		<td>고객명자리</td>
 		<td>주소자리</td>
