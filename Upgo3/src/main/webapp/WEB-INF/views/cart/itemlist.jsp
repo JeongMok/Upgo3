@@ -67,8 +67,24 @@ $(function(){
     })
     
     // 장바구니 담기
-    $("#addcart").click(function() {
+    $("#addcart").click(function(e) {
+    	
+    	e.preventDefault();
     	alert($("#modal_quantity").val());
+    	$('#modal_odt_quantity').val($("#amount span").text());
+    	alert($('#modalForm').serialize());
+    	
+    	$.ajax({
+			url: "cart/cart.action",
+			method: "POST",
+			data: $('#modalForm').serialize(),	// form 데이터를 전송형식으로 변경
+			success: function(data, status, xhr){
+				alert("성공")
+			},
+			error: function(xhr, status, err) {
+				alert("안되냐");
+			}
+		})
     	$("#amount span").text("1");
     })
     
@@ -132,10 +148,11 @@ $(function(){
 				    <h5 id="price"></h5>
 				    <h5 id="color"></h5>
 				    <h5 id="size"></h5>
+				    <h5 id="modal_quantity" type="hidden"></h5>
+			    <form action="cart/cart.action" method="post" id="modalForm">
+			    	<input type="hidden" name="odtQuantity" id="modal_odt_quantity">
 				    <input type="hidden" name="prdCode" id="modal_code">
-					<input type="hidden" name="prdCategory" id="modal_category">
-					<input type="hidden" name="prdName" id="modal_name">
-					<input type="hidden" name="prdQuantity" id="modal_quantity">
+				</form>
 				</div>
 				<!-- Footer -->
 				<div class="modal-footer">
