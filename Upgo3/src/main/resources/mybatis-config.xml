@@ -27,6 +27,5 @@
 		<mapper resource="com/example/mapper/oms-mapper.xml" />
 		<mapper resource="com/example/mapper/product-mapper.xml" />
 		<mapper resource="com/example/mapper/warehouse-mapper.xml" />
-		<mapper resource="com/example/mapper/order-mapper.xml" />
 	</mappers>
 </configuration>

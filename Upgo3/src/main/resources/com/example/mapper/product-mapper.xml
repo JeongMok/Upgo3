@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id="codeByAmount" resultType="int" parameterType="string">
-		select sum(wlquantity)
+		select sum(wlquantity) 
 		from WAREHOUSELOCATION 
 		where PRDCODE = #{code}
 	</select>
