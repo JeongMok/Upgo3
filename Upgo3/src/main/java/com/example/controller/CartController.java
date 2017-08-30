@@ -33,7 +33,9 @@ public class CartController {
 	
 	@RequestMapping(value = "/basket.action", method = RequestMethod.GET)
 	public String basket(Model model) {
-		System.out.println("123");
+		
+		
+		
 		return "cart/basket";
 	}
 
