@@ -12,6 +12,7 @@ import com.example.dto.Member;
 import com.example.dto.OrderDetail;
 import com.example.dto.Product;
 import com.example.dto.StoreRelease;
+import com.example.dto.WarehouseLocation;
 
 // Service는 트랜잭션 단위
 @Service //@Component
@@ -21,37 +22,44 @@ public class WarehouseService {
 	@Qualifier("warehouseDao")
 	private WarehouseDao warehouseDao;
 
-	public ArrayList<StoreRelease> findStoreReleasesByDate(Date dateS, Date dateF) {
-		
-			ArrayList<StoreRelease> storeReleases = warehouseDao.selectStoreReleasesByDate(dateS, dateF);
-		
-		return storeReleases;
+	public int findWlQuantity(int wlno) {
+		int wlQuantity = warehouseDao.selectWlQuantity(wlno);
+		return wlQuantity;
+	}
+
+	public ArrayList<StoreRelease> findStoreReleasesByDate(Date dbdateS, Date dbdateF) {
+		ArrayList<StoreRelease> storeReleaseByDate = warehouseDao.selectStoreReleasesByDate(dbdateS, dbdateF);
+		return storeReleaseByDate;
 	}
 
 	public Product findProductsByOdtNo(int odtNo) {
-
-		Product storedProduct = warehouseDao.selectProductByOdtNo(odtNo); 
-		
-		return storedProduct;
+		Product product = warehouseDao.selectProductByOdtNo(odtNo);
+		return product;
 	}
 
 	public OrderDetail findOrderDetailQuantityByOdtNo(int odtNo) {
-		
-		OrderDetail storeOrderDetail = warehouseDao.selectOrderDetailByOdtNo(odtNo); 
-		
-		return storeOrderDetail;
-		
+		OrderDetail orderDetailQuantity = warehouseDao.selectOrderDetailByOdtNo(odtNo);
+		return orderDetailQuantity;
+	}
+
+	public ArrayList<Product> findProductsByWlNo(int warehouseno) {
+		ArrayList<Product> productsBywlNo = warehouseDao.selectProductsByWlNo(warehouseno);
+		return productsBywlNo;
+	}
+
+	public ArrayList<WarehouseLocation> findWlByWlno(int warehouseno) {
+		ArrayList<WarehouseLocation> wls = warehouseDao.selectWlByWlno(warehouseno);
+		return wls;
+	}
+
+	public Product findProductByPrdCode(String prdCode) {
+		Product clickedProduct = warehouseDao.selectProductByPrdCode(prdCode);
+		return clickedProduct;
 	}
 	
 	
-//	public Member authenticate(String mbrName, String mbrPhone) {
-//		Member member = omsDao.findByNameAndPhoneNumber(mbrName, mbrPhone);
-//		return member;
-//	}
-
-//	public ArrayList<Product> productList() {
-//		ArrayList<Product> products = omsDao.productList();
-//		return products;
-//	}
-
+	
+	
+	
+	
 }

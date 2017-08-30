@@ -69,16 +69,123 @@
 			return date;
 		}
 		// finish datepicker usage
-		
-		$("#warehousestatetable").find("td").each(function(index){
-			
-			$(this).css("background","red");
-		})
-
 	});
 </script>
 <script>
 	$(function(){
+		
+		// Change Table Background Color by Warehouse Status
+		var ware = ${wlTotalQuantityBywlNo};
+		$("#warehousestatetable").find("td").each(function(index){			
+			if(ware[index]>39){
+				$(this).css("background","red");	
+			}else if(ware[index]>24){
+				$(this).css("background","orange");
+			}else{
+				$(this).css("background","green");
+			}
+		})
+		$("#warehousestatetable2").find("td").each(function(index){			
+			if(ware[index]>40){
+				$(this).css("background","red");
+			}else if(ware[index]>25){
+				$(this).css("background","orange");
+			}else{
+				$(this).css("background","green");
+			}
+		})
+		//////////////////////////////////////////////////////
+		
+		////////////Warehouse Status(been clicked)
+		$("#warehousestatetable").on("click", "td", function() {
+			var warehouseno = $(this).attr("attr");
+			$.ajax({
+		        type:"POST",
+		        url:"alwaysAnswerSuccess.action",
+		        data : {"warehouseno":warehouseno} ,
+		        success: function(data,status,xhr){
+		        	$("#clickedWarehouseInfo").load('warehouseStatus.action',{ "warehouseno" : warehouseno});
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        }
+		    });
+		});
+		$("#warehousestatetable2").on("click", "td", function(index) {
+			var warehouseno = $(this).attr("attr");
+			$.ajax({
+		        type:"POST",
+		        url:"alwaysAnswerSuccess.action", 
+		        data : {"warehouseno":warehouseno} ,
+		        success: function(data,status,xhr){
+		        	$("#clickedWarehouseInfo").load('warehouseStatus.action',{ "warehouseno" : warehouseno}); 
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        }  
+		    }); 
+		});
+		////////////////////////////////////////////////////////////
+		$("#warehouseInSearch").on("click",function() {
+			var inDateS = $('#warehouseInDateS').val();
+			var inDateF = $('#warehouseInDateF').val();
+			$.ajax({
+		        type:"POST",
+		        url:"alwaysAnswerSuccess.action", 
+		        success: function(data,status,xhr){
+		        	$("#warehouseIn").load('warehouseInAndOut.action',{ "DateS" : inDateS, "DateF" : inDateF, "type":0}); 
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        }  
+		    }); 
+		});
+		
+		$("#warehouseOutSearch").on("click",function() {
+			var outDateS = $('#warehouseOutDateS').val();
+			var outDateF = $('#warehouseOutDateF').val();
+			$.ajax({
+		        type:"POST",
+		        url:"alwaysAnswerSuccess.action", 
+		        success: function(data,status,xhr){
+		        	$("#warehouseOut").load('warehouseInAndOut.action',{ "DateS" : outDateS, "DateF" : outDateF, "type":1}); 
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        }  
+		    }); 
+		});
+		
+		$("#warehouseIn").on("click", "tr" ,function() {
+			var clickedProduct = $(this).find(".prdCode").attr("prdCode");
+			alert(clickedProduct);
+			$.ajax({
+		        type:"POST",
+		        url:"alwaysAnswerSuccess.action", 
+		        success: function(data,status,xhr){
+		        	$("#clickedProductInfoIn").load('clickedProductInfoInInAndOut.action',{ "prdCode" : clickedProduct, "type": 0 }); 
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        }  
+		    }); 
+		});
+		
+		$("#warehouseOut").on("click", "tr" ,function() {
+			var clickedProduct = $(this).find(".prdCode").attr("prdCode");
+			alert(clickedProduct);
+			$.ajax({
+		        type:"POST",
+		        url:"alwaysAnswerSuccess.action", 
+		        success: function(data,status,xhr){
+		        	$("#clickedProductInfoOut").load('clickedProductInfoInInAndOut.action',{ "prdCode" : clickedProduct, "type": 1 }); 
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        }  
+		    }); 
+		});
+		
 		
 	});
 </script>
@@ -131,24 +238,24 @@
 			<div id="warehousetablediv">
 				<table id="warehousestatetable">
 					<tr>
-						<td class="tabletd" id="warehouse1">1</td>
-						<td class="tabletd" id="warehouse2">2</td>
+						<td class="tabletd" id="warehouse1" attr="1">1</td>
+						<td class="tabletd" id="warehouse2" attr="2">2</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse3">3</td>
-						<td class="tabletd" id="warehouse4">4</td>
+						<td class="tabletd" id="warehouse3" attr="3">3</td>
+						<td class="tabletd" id="warehouse4" attr="4">4</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse5">5</td>
-						<td class="tabletd" id="warehouse6">6</td>
+						<td class="tabletd" id="warehouse5" attr="5">5</td>
+						<td class="tabletd" id="warehouse6" attr="6">6</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse7">7</td>
-						<td class="tabletd" id="warehouse8">8</td>
+						<td class="tabletd" id="warehouse7" attr="7">7</td>
+						<td class="tabletd" id="warehouse8" attr="8">8</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse9">9</td>
-						<td class="tabletd" id="warehouse10">10</td>
+						<td class="tabletd" id="warehouse9" attr="9">9</td>
+						<td class="tabletd" id="warehouse10" attr="10">10</td>
 					</tr>
 				</table>
 			</div>
@@ -156,24 +263,24 @@
 			<div id="warehousetablediv2">
 				<table id="warehousestatetable2">
 					<tr>
-						<td class="tabletd" id="warehouse11">11</td>
-						<td class="tabletd" id="warehouse12">12</td>
+						<td class="tabletd" id="warehouse11" attr="11">11</td>
+						<td class="tabletd" id="warehouse12" attr="12">12</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse13">13</td>
-						<td class="tabletd" id="warehouse14">14</td>
+						<td class="tabletd" id="warehouse13" attr="13">13</td>
+						<td class="tabletd" id="warehouse14" attr="14">14</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse15">15</td>
-						<td class="tabletd" id="warehouse16">16</td>
+						<td class="tabletd" id="warehouse15" attr="15">15</td>
+						<td class="tabletd" id="warehouse16" attr="16">16</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse17">17</td>
-						<td class="tabletd" id="warehouse18">18</td>
+						<td class="tabletd" id="warehouse17" attr="17">17</td>
+						<td class="tabletd" id="warehouse18" attr="18">18</td>
 					</tr>
 					<tr>
-						<td class="tabletd" id="warehouse19">19</td>
-						<td class="tabletd" id="warehouse20">20</td>
+						<td class="tabletd" id="warehouse19" attr="19">19</td>
+						<td class="tabletd" id="warehouse20" attr="20">20</td>
 					</tr>
 				</table>
 			</div>
@@ -198,7 +305,7 @@
 						<tr>
 							<td class="text-center">${products[i].prdCode}</td>
 							<td class="text-center">${products[i].prdName}</td>
-							<td class="text-center">${warehouselocations[i].quantity} / ${products[i].prdQuantity}</td>
+							<td class="text-center">${warehouselocations[i].wlQuantity} / ${products[i].prdQuantity}</td>
 							<td class="text-center">${products[i].prdPrice}</td>
 							<td class="text-center">${products[i].prdColor}</td>
 							<td class="text-center">${products[i].prdSize}</td>
@@ -219,7 +326,7 @@
 					Date: <input type="text" class="datepicker" id="warehouseInDateF">
 					<input type="button" value="search" id="warehouseInSearch">
 				</p>
-				<table class="table-fill">
+				<table class="table-fill" id="warehouseIn">
 					<thead>
 						<tr>
 							<th class="text-center">입고일</th>
@@ -232,12 +339,12 @@
 					<tbody class="table-hover">
 						<c:if test = "${stores ne null }">
 						<c:forEach var="i" begin="0" end="${storeSize - 1}" step="1">
-						<tr>
-							<td class="text-center">${stores[i].srDate}</td>
-							<td class="text-center">${storeProducts[i].prdCode}</td>
-							<td class="text-center">${storeProducts[i].prdName}</td>
-							<td class="text-center">${storeProducts[i].prdQuantity}</td>
-							<td class="text-center">${storeOrderDetails[i].odtQuantity}</td>
+						<tr class="storereleasedata">
+							<td class="text-center" >${stores[i].srDate}</td>
+							<td class="prdCode" prdCode="${storeProducts[i].prdCode}">${storeProducts[i].prdCode}</td>
+							<td class="text-center" >${storeProducts[i].prdName}</td>
+							<td class="text-center" >${storeProducts[i].prdQuantity}</td>
+							<td class="text-center" >${storeOrderDetails[i].odtQuantity}</td>
 						</tr>
 						</c:forEach>
 						</c:if>
@@ -245,7 +352,48 @@
 				</table>
 			</div>
 			<div>
-				
+				<table id="clickedProductInfoIn">
+					<tbody>
+						<c:if test = "${clickedProduct ne null }">
+						<tr>
+							<td class="text-center">제품 코드</td>
+							<td class="text-center">${clickedProduct.prdCode}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 이름</td>
+							<td class="text-center">${clickedProduct.prdName}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 가격</td>
+							<td class="text-center">${clickedProduct.prdPrice}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 총 수량</td>
+							<td class="text-center">${clickedProduct.prdQuantity}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 카테고리</td>
+							<td class="text-center">${clickedProduct.prdCategory}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 색상</td>
+							<td class="text-center">${clickedProduct.prdColor}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 사이즈</td>
+							<td class="text-center">${clickedProduct.prdSize}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 안전재고</td>
+							<td class="text-center">${clickedProduct.prdSafeStock}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 설치시간</td>
+							<td class="text-center">${clickedProduct.prdInstallTime}</td>
+						</tr>
+						</c:if>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div id="tabs-3">
@@ -255,7 +403,7 @@
 					Date: <input type="text" class="datepicker" id="warehouseOutDateF">
 					<input type="button" value="search" id="warehouseOutSearch">
 				</p>
-				<table class="table-fill">
+				<table class="table-fill" id="warehouseOut">
 					<thead>
 						<tr>
 							<th class="text-center">출고일</th>
@@ -269,11 +417,11 @@
 						<c:if test = "${releases ne null }">
 						<c:forEach var="i" begin="0" end="${releaseSize - 1}" step="1">
 						<tr>
-							<td class="text-center">${releases[i].srDate}</td>
-							<td class="text-center">${releaseProducts[i].prdCode}</td>
-							<td class="text-center">${releaseProducts[i].prdName}</td>
-							<td class="text-center">${releaseProducts[i].prdQuantity}</td>
-							<td class="text-center">${releaseOrderDetails[i].odtQuantity}</td>
+							<td class="text-center" >${releases[i].srDate}</td>
+							<td class="prdCode" prdCode="${releaseProducts[i].prdCode}">${releaseProducts[i].prdCode}</td>
+							<td class="text-center" >${releaseProducts[i].prdName}</td>
+							<td class="text-center" >${releaseProducts[i].prdQuantity}</td>
+							<td class="text-center" >${releaseOrderDetails[i].odtQuantity}</td>
 						</tr>
 						</c:forEach>
 						</c:if>
@@ -281,7 +429,48 @@
 				</table>
 			</div>
 			<div>
-				
+				<table id="clickedProductInfoOut">
+					<tbody>
+						<c:if test = "${clickedProduct ne null }">
+						<tr>
+							<td class="text-center">제품 코드</td>
+							<td class="text-center">${clickedProduct.prdCode}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 이름</td>
+							<td class="text-center">${clickedProduct.prdName}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 가격</td>
+							<td class="text-center">${clickedProduct.prdPrice}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 총 수량</td>
+							<td class="text-center">${clickedProduct.prdQuantity}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 카테고리</td>
+							<td class="text-center">${clickedProduct.prdCategory}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 색상</td>
+							<td class="text-center">${clickedProduct.prdColor}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 사이즈</td>
+							<td class="text-center">${clickedProduct.prdSize}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 안전재고</td>
+							<td class="text-center">${clickedProduct.prdSafeStock}</td>
+						</tr>
+						<tr>
+							<td class="text-center">제품 설치시간</td>
+							<td class="text-center">${clickedProduct.prdInstallTime}</td>
+						</tr>
+						</c:if>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

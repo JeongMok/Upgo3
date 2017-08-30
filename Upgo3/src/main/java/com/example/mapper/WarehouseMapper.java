@@ -8,6 +8,7 @@ import com.example.dto.Member;
 import com.example.dto.OrderDetail;
 import com.example.dto.Product;
 import com.example.dto.StoreRelease;
+import com.example.dto.WarehouseLocation;
 
 public interface WarehouseMapper {
 
@@ -17,6 +18,14 @@ public interface WarehouseMapper {
 
 	OrderDetail selectOrderDetailByOdtNo(int odtNo);
 
-//	Member findByNameAndPhoneNumber(HashMap<String, Object> params);
-//	ArrayList<Product> productList();
+	ArrayList<WarehouseLocation> selectWL();
+
+	int selectWlQuantity(int wlno);
+
+	ArrayList<Product> selectProductsByWlNo(int iwarehouseno);
+
+	ArrayList<WarehouseLocation> selectWlByWlno(int iwarehouseno);
+
+	Product selectProductByPrdCode(String prdCode);
+
 }

@@ -3,12 +3,10 @@ package com.example.dto;
 import java.util.Date;
 
 public class StoreRelease {
-
 	private int srNo;
 	private Date srDate;
 	private int odtNo;
 	private int srType;
-	
 	public int getSrNo() {
 		return srNo;
 	}
@@ -33,6 +31,4 @@ public class StoreRelease {
 	public void setSrType(int srType) {
 		this.srType = srType;
 	}
-	
-	
 }

@@ -12,6 +12,7 @@ import com.example.dto.Member;
 import com.example.dto.OrderDetail;
 import com.example.dto.Product;
 import com.example.dto.StoreRelease;
+import com.example.dto.WarehouseLocation;
 import com.example.mapper.WarehouseMapper;
 
 @Repository
@@ -46,18 +47,29 @@ public class WarehouseDao {
 		return storeOrderDetail;
 	}
 
-//	public Member findByNameAndPhoneNumber(String mbrName, String mbrPhone) {
-//		// 전달인자가 2개 이상일 때에는 hashmap으로 전달한다
-//		HashMap<String, Object> params = new HashMap<>();
-//		params.put("mbrName", mbrName);
-//		params.put("mbrPhone", mbrPhone);
-//		
-//		Member member = omsMapper.findByNameAndPhoneNumber(params);
-//		return member;
-//	}
+	public ArrayList<WarehouseLocation> selectWL() {
+		ArrayList<WarehouseLocation> wl = warehouseMapper.selectWL();
+		return wl;
+	}
 
-//	public ArrayList<Product> productList() {
-//		ArrayList<Product> products = omsMapper.productList();
-//		return products;
-//	}
+	public int selectWlQuantity(int wlno) {
+		int wlQuantity = warehouseMapper.selectWlQuantity(wlno);
+		return wlQuantity;
+	}
+
+	public ArrayList<Product> selectProductsByWlNo(int iwarehouseno) {
+		ArrayList<Product> products = warehouseMapper.selectProductsByWlNo(iwarehouseno);
+		return products;
+	}
+
+	public ArrayList<WarehouseLocation> selectWlByWlno(int iwarehouseno) {
+		ArrayList<WarehouseLocation> wls = warehouseMapper.selectWlByWlno(iwarehouseno);
+		return wls;
+	}
+
+	public Product selectProductByPrdCode(String prdCode) {
+		Product clickedProduct = warehouseMapper.selectProductByPrdCode(prdCode);
+		return clickedProduct;
+	}
+
 }

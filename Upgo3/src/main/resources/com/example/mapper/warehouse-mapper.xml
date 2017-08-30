@@ -25,52 +25,35 @@
 		where odtno=#{odtNo}
 	</select>
 	
-	
-	<!-- <insert id="insertStoreBoard" parameterType="com.badazo.dto.StoreBoard">
-		insert
-		into
-		storeboard(
-		SBNO,
-		SBNAME,
-		SBLICENSE,
-		SBPHONE,
-		SBADDRESS,
-		SBCONTENT,
-		SBWRITER,
-		SBTYPE,
-		SBTAGNAME)
-		values(STOREBOARD_SEQ.nextval,#{sbName},#{sbLicense},#{sbPhone},#{sbAddress},#{sbContent},#{sbWriter},#{sbType},#{sbTagName})
-	</insert>
-
-	<insert id="insertStoreBoardAttach" parameterType="com.badazo.dto.StoreBoardAttach">
-		insert into
-		storeboardattach
-		values(#{sbLicense},STOREBOARDATTACH_SEQ.nextval,#{sbaSaveFileName},#{sbaUserFileName})
-	</insert>
-
-
-	<select id="selectStoreBoardById" parameterType="hashmap"
-		resultType="com.badazo.dto.StoreBoard">
-
+	<select id="selectWL" resultType="com.example.dto.WarehouseLocation">
 		select *
-		from (
-			select rownum idx, s.*
-			from (
-				select *
-				from storeboard
-				order by sbno DESC
-				)s
-		)
-		where sbwriter = #{sbWriter} AND idx >= #{first} AND idx <![CDATA[<]]> ${last}
+		from warehouselocation
 	</select>
 	
-	<select id="selectStoreBoardCount" resultType="int">
-		SELECT count(*) FROM storeboard
+	<select id="selectWlQuantity" parameterType="int" resultType="int">
+		select sum(wlquantity)
+		from warehouselocation
+		where wlno=#{wlno}
 	</select>
-
-	호가 만듬요 지우지 마삼.
-	<select id="selectStoreBoard" resultType="com.badazo.dto.StoreBoard">
-		SELECT * FROM
-		storeboard where sbno = 51
-	</select> -->
+	
+	<select id="selectProductsByWlNo" parameterType="int" resultType="com.example.dto.Product">
+		select *
+		from product p
+		inner join warehouselocation wl
+		on wl.prdcode=p.prdcode
+		where warehouseno=#{iwarehouseno}
+	</select>
+	
+	<select id="selectWlByWlno" parameterType="int" resultType="com.example.dto.WarehouseLocation">
+		select *
+		from warehouselocation
+		where warehouseno=#{iwarehouseno}
+	</select>
+	
+	<select id="selectProductByPrdCode" parameterType="string" resultType="com.example.dto.Product">
+		select *
+		from product
+		where prdCode=#{prdCode}
+	</select>
+	
 </mapper>
