@@ -1,19 +1,18 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
-	<title>Home</title>
+<meta name="google-site-verification"
+	content="jmcSA7d-dnNJUWyZJBghach5uXuiSGdvmGkD0cNDRDA" />
+<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  kksdfsd chajlkfjklssdfsdfsdfsdf
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-<a href="ordermain.action">hyohyeon</a>
-<br>
-<a href="itemList.action">jungmok</a>
-<br>
-<a href="login.action">login</a>
+	<jsp:include page="/WEB-INF/views/include/header.jsp" flush="true" />
+	
+	
+	
 </body>
 </html>

@@ -2,37 +2,35 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.example.mapper.MemberMapper">
 
-	<resultMap type="com.example.dto.Member" id="MemberMap">
-		<id column="MBRID" property="mbrId" />
-		<result column="MBRPASSWD" property="mbrPasswd" />
-		<result column="MBRNAME" property="mbrName" />
-		<result column="MBRPHONE" property="mbrPhone" />
-		<result column="MBRADDRESS" property="mbrAddress" />
-		<result column="MBRUSERTYPE" property="mbrUserType" />
-		<result column="MBRREGDATE" property="mbrRegDate" />
-	</resultMap>
-
-	<select id="selectMemberByIdAndPasswd" parameterType="hashmap"
-		resultType="com.example.dto.Member" resultMap="MemberMap">
-		SELECT * 
-		FROM MEMBER 
-		WHERE MBRID=#{mbrId} AND MBRPASSWD=#{mbrPasswd}
+	<select id="selectMemberByIdAndPasswd" resultType="com.example.dto.Member"
+		parameterType="hashmap">
+		SELECT mbrId
+		FROM member 
+		WHERE mbrId=#{mbrId} AND mbrPasswd=#{mbrPasswd}
 	</select>
 	
 	<insert id="insertMember" parameterType="com.example.dto.Member">
-		INSERT INTO MEMBER (MBRID, MBRPASSWD, MBRNAME, MBRPHONE, MBRADDRESS, MBRUSERTYPE)
-		VALUES (#{mbrId}, #{mbrPasswd}, #{mbrName}, #{mbrPhone}, #{mbrAddress}, #{mbrUserType})
+	INSERT INTO MEMBER (MBRID, MBRPASSWD, MBRNAME, MBRPHONE, MBRADDRESS, MBRUSERTYPE, mbrEmail)
+		VALUES (#{mbrId}, #{mbrPasswd}, #{mbrName, jdbcType=VARCHAR}, #{mbrPhone, jdbcType=VARCHAR}, #{mbrAddress, jdbcType=VARCHAR}, #{mbrUserType}, #{mbrEmail})
 	</insert>
+	
+	
+	<select id="selectMessageByMemberName" parameterType="String" resultType="String">
+	select boardWriter
+	from message
+	where mbrId = #{mbrId}
+	order by messageno desc
+	</select>
+	
+	<select id="selectMessage" parameterType="string" resultType="int">
+		select count(*)
+		from message
+		where mbrId = #{mbrId}
+	</select>
+	
 
 </mapper>
-
-
-
-
-
-
-
-
+ 
