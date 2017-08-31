@@ -20,4 +20,14 @@ public class ProductDao {
 		List<Product> product = productMapper.selectProduct();
 		return product;
 	}
+
+	public Product selectProductByCode(Product product) {
+		Product data = productMapper.selectProductByCode(product);
+		return data;
+	}
+
+	public int codeByAmount(String code) {
+		int sum = productMapper.codeByAmount(code);
+		return sum;
+	}
 }

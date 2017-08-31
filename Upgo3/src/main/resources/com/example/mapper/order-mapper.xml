@@ -3,9 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.mapper.ProductMapper">
+<mapper namespace="com.example.mapper.OrderMapper">
 	
-	<select id="selectProduct" resultType="com.example.dto.Product">
+	<insert id="insertByCode" parameterType="com.example.dto.OrderDetail">
+		insert into	orderdetail(odtno, odtquantity, prdcode, mbrid)
+		values(ORDERDETAIL_SEQ.nextval,#{odtQuantity},#{prdCode},'admin')
+	</insert>
+	
+	<!-- <select id="selectProduct" resultType="com.example.dto.Product">
 		select *
 		from product
 	</select>
@@ -20,7 +25,7 @@
 		select sum(wlquantity) 
 		from WAREHOUSELOCATION 
 		where PRDCODE = #{code}
-	</select>
+	</select> -->
 	
 	<!-- <insert id="insertStoreBoard" parameterType="com.badazo.dto.StoreBoard">
 		insert

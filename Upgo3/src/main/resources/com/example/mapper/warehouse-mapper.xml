@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.WarehouseMapper">
+	
+	<select id="selectStoreReleasesByDate" parameterType="HashMap"  resultType="com.example.dto.StoreRelease">
+		select *
+		from storerelease
+		where srdate between #{dateS} and #{dateF}
+	</select>
+	
+	<select id="selectProductByOdtNo" parameterType="int"  resultType="com.example.dto.Product">
+		select *
+		from product p
+		inner join orderdetail odt
+		on p.prdCode = odt.prdCode
+		where odt.odtno=#{odtNo}
+	</select>
+	
+	<select id="selectOrderDetailByOdtNo" parameterType="int"  resultType="com.example.dto.OrderDetail">
+		select *
+		from orderdetail
+		where odtno=#{odtNo}
+	</select>
+	
+	<select id="selectWL" resultType="com.example.dto.WarehouseLocation">
+		select *
+		from warehouselocation
+	</select>
+	
+	<select id="selectWlQuantity" parameterType="int" resultType="int">
+		select sum(wlquantity)
+		from warehouselocation
+		where wlno=#{wlno}
+	</select>
+	
+	<select id="selectProductsByWlNo" parameterType="int" resultType="com.example.dto.Product">
+		select *
+		from product p
+		inner join warehouselocation wl
+		on wl.prdcode=p.prdcode
+		where warehouseno=#{iwarehouseno}
+	</select>
+	
+	<select id="selectWlByWlno" parameterType="int" resultType="com.example.dto.WarehouseLocation">
+		select *
+		from warehouselocation
+		where warehouseno=#{iwarehouseno}
+	</select>
+	
+	<select id="selectProductByPrdCode" parameterType="string" resultType="com.example.dto.Product">
+		select *
+		from product
+		where prdCode=#{prdCode}
+	</select>
+	
+</mapper>

@@ -44,7 +44,7 @@
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
-	</bean>
+	</bean> 
 	<!-- END -->
 
 	<!-- InterFace MyBatis -->
@@ -63,6 +63,17 @@
 		<property name="mapperInterface" value="com.example.mapper.ProductMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	
+	<bean id="warehouseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.example.mapper.WarehouseMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="orderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.example.mapper.OrderMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
 	<!-- END -->
 
 	<!-- Properties 사용 -->

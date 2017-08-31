@@ -32,4 +32,25 @@ public class OmsDao {
 		ArrayList<Product> products = omsMapper.productList();
 		return products;
 	}
+
+	public void orderConfirm(Member member, Product product) {
+		omsMapper.orderConfirm(member, product);
+	}
+
+	public void insertOrderList(String prdName, String prdQuantity, String mbrId) {
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("prdName", prdName);
+		params.put("prdQuantity", prdQuantity);
+		params.put("mbrId", mbrId);
+		omsMapper.insertOrderList(params);
+	}
+
+	public void insertOrder(String mbrId, String ordAddress, String ordPhone, String ordName) {
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("mbrId", mbrId);
+		params.put("ordAddress", ordAddress);
+		params.put("ordPhone", ordPhone);
+		params.put("ordName", ordName);
+		omsMapper.insertOrder(params);
+	}
 }

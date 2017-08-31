@@ -11,6 +11,8 @@ public class Product {
 	private String PrdSize;
 	private int PrdSafeStock;
 	private int PrdInstallTime;
+
+
 	
 	public String getPrdCode() {
 		return PrdCode;
