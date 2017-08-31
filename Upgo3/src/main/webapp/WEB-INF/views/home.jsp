@@ -10,6 +10,7 @@
 <title>Home</title>
 </head>
 <body>
+
 	<jsp:include page="/WEB-INF/views/include/header.jsp" flush="true" />
 	
 	

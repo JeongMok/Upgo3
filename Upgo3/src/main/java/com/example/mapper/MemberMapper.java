@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,5 +13,6 @@ public interface MemberMapper {
 	List<String> selectMessageByMemberName(String mbrId);
 	int selectMessage(String mbrId);
 	Member selectMemberByIdAndPasswd(String name, String userId);
+
 	
 }
