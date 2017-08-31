@@ -5,7 +5,7 @@
   
 <mapper namespace="com.example.mapper.MemberMapper">
 
-	<resultMap type="com.example.dto.Member" id="MemberMap">
+	<!-- <resultMap type="com.example.dto.Member" id="MemberMap">
 		<id column="MBRID" property="mbrId" />
 		<result column="MBRPASSWD" property="mbrPasswd" />
 		<result column="MBRNAME" property="mbrName" />
@@ -13,10 +13,10 @@
 		<result column="MBRADDRESS" property="mbrAddress" />
 		<result column="MBRUSERTYPE" property="mbrUserType" />
 		<result column="MBRREGDATE" property="mbrRegDate" />
-	</resultMap>
+	</resultMap> -->
 
 	<select id="selectMemberByIdAndPasswd" parameterType="hashmap"
-		resultType="com.example.dto.Member" resultMap="MemberMap">
+		resultType="com.example.dto.Member">
 		SELECT * 
 		FROM MEMBER 
 		WHERE MBRID=#{mbrId} AND MBRPASSWD=#{mbrPasswd}
